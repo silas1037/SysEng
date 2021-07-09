@@ -1,0 +1,324 @@
+Localization Guide
+
+This is an outline of the process involved in using Sys0Decompiler and system3-sdl to localize one of Alicesoft's System 1 - System 3.0 games. Sys0Decompiler is a compiler/decompiler program designed to work with Alicesoft/ChampionSoft's System 1-3.0 technology, and system3-sdl is its multi-platform game interpreter counterpart, based on an original system 32-bit port by Takeda "TODO" Toshiya.
+
+As the name implies, system3-sdl requires the SDL2 library for development, as well as the SDL-ttf library. Note that system3-sdl currently uses unistd.h to use POSIX-style commands, and is incompatible with Visual Studio, even for Windows-specific development. Alternate compilers such as Cygwin or MinGW, and IDEs such as Code::Blocks, may be required for Windows development.
+
+This guide begins with a step-by-step outline of the process for localization, followed by a Troubleshooting Guide.
+
+
+
+Step 1 - Confirm Your Version
+
+I've attempted to document the various games from this era and their playability status at the link below.
+
+https://alicesoft.fandom.com/wiki/User_blog:RottenBlock/System_1-3_Games_Playability_Status
+
+It the link is not available for whatever reason, a short-list will be included here. 
+
+It is recommended you use the most recent version of a game for localization purposes whenever possible. For example, the System 3.5 version of DALK (which requires different tools than these) is recommended over the System 2 version. This recommendation extends to DPS All, a compilation of all previous DPS games. Individual DPS sub-games could be seperately localized and combined at a later date.
+
+	System 1: Little Vampire, Gakuen Senki, Rance 1 (non-DOS and Windows), Policewoman VX, Intruder, Crescent Moon Girl, Dangerous Tengu Legend, D.P.S., Rance 2 (non-Windows), Rance 2 Hint Disk, D.P.S. SG, Toushin Toshi (non-Windows), Toushin Toshi Hint Disk, Alice's Cottage 1.
+	
+	System 2: Rance 3 (non-Windows), Rance 3 Option Set, DALK (non-Windows), DALK Hint Disk, Dr. STOP! (non-Windows), Alice's Cottage 2, Super D.P.S., Prostudent G (Floppy version).
+	
+	System 3.0: Prostudent G (CD version), Ayumi-chan's Story (anime or live-action), Ayumi-chan's Story Hint Disk, Rance 4 (non-Windows), Rance 4 Hint Disk, AmbivalenZ, Space Bandit Fanny Bee, Otome Senki, Toushin Toshi 2 (non-Windows), Toushin Toshi 2 Graphic Disk, Alice's Cottage 3, Gakuen KING, Illusion of a Dream, Rance 4.1, Rance 4.2, D.P.S. All, Only You - The Decadent Juliettes, Toushin Toshi 2 - Soshite sorekara.
+	
+	All later games belong to either System 3.5 or System 4, which are not supported by these tools. Look online for Sys3Decompiler (for the former) or AinDecompiler (for the latter).
+	
+Note that System 2 is not strongly supported by these tools and alternate versions should be used whenever possible.
+
+
+
+Step 2 - Prepare Your Files
+
+If necessary, extract your game's files from their disk images. Windows or DOS versions should not require this step. Most disk images, such as .DSK or .XDF files, can be decompiled using Virtual Floppy Image Convert or other tools. Unfortunately, only some .D88 disk images can be extracted at the time of writing, leaving others inaccessible.
+
+Copy your game's data files to the system3-sdl's Debug and Release directories (or adjust the project files to use alternate directories). You will require any files marked .DAT, though the specific files used by a game will vary. These include [X]DISK.DAT (contains source code, always present), [X]CG.DAT (contains images, almost always present), AG00.dat (contains object and verb listings, usually present even if not used by the game), [X]MUS.DAT (contains music), GAIJI.DAT (contains custom text characters), or various other .DAT files containing external data, such as maps. [X]SLEEP.DAT files contain save data, and are not necessarily essential.  MSX source files will have to be renamed to match this naming scheme. Always keep backup versions of the original data files.
+
+The original game executible, .DLL files, or other support files native to the platform should not be necessary to run the game, only the .DAT files.
+
+Lastly, go to the system3-sdl2/resources/mda directory to find a copy of your game's respective .MDA file. This is required for system3-sdl to produce accurate-sounding MIDI music. Copy this file to both the game's base directories.
+
+
+
+Step 3 - Test the Game
+
+We will now attempt to test the original Japanese game using system3-sdl unmodified. You may find it necessary to set certain program arguments depending on your setup, such as -gamedir, -savedir, and especially -game. See "Program Arguments" below for more dteails. Then, run system3-sdl using your compiler of choice.
+
+If done correctly, the game should run to some capacity. Various issues may occur that may be fixed by later steps in the process, however.
+
+
+
+Step 4 - Initial Decompile and Compile
+
+Use Sys0Decompiler to extract the game's code. Select the directory containing the game's [x]DISK.DAT files and, if applicable, the AG00.DAT file. Do not overlook any of these files or the decompile will be incomplete. Decompile to a safe location. The decompiler will create several files called "pages" with the .adv file extention. This is the game's source. If your game included an AG00.DAT file, you will also get two files dubbed !objects.adv and !verbs.adv. These are all parts of the game's code and should be kept together.
+
+It is recommended you then duplicate these files to a seperate directory marked "original" or any other appropriate name for later reference.
+
+Most Alicesoft games are encoded using Shift-JIS, however this is not true of games on the MSX, PC-88, and potentially other platforms. When decompiling one of these files, make sure to select the alternate encoding on the decompile screen. Because of technical limitations on these platforms, some features and warnings may not be available, so consider reading the decompiler's Troubleshooting Guide.
+
+Decompiled files will be in Shift-JIS, even if the source file uses a different encoding. You may need to change settings in your code editor to account for these characters. For example, in Notepad++ (if it doesn't detect Shift-JIS automatically), select Encoding -> Character sets -> Japanese -> Shift-JIS.
+
+
+	Step 4a - Understanding Gaiji
+	
+	If your game incldues a GAIJI.DAT file, then it includes special characters called "gaiji." Gaiji were any externally-defined character not part of the Shift-JIS standard. These range from Latin characters that could be easily replaced to custom glyphs that cannot. Unfortunately, gaiji do not exist in modern Shift-JIS. This means that, if the code were decompiled directly, your editor would overwrite the gaiji with whatever modern character your encoding set thinks they represent. As a result, gaiji characters are output to the code file in hex format, 0x####, with #### being the hexidecimal code for the complete, two-byte gaiji.
+	
+	For example, this string might contain a gaiji image of a circle as a single character in the middle of the string:
+	
+		'Here is a circle: 0x8888'
+
+	Gaiji codes should be left untouched if at all possible, and if nothing else, copy and pasted to a safe notes files. There is no way to extract gaiji from GAIJI.DAT, so pre-existing examples are all you have to identify them.
+	
+	Be aware that the compiler will attempt to treat any instance of 0x followed by a number as gaiji, even if that number is not four digits. If you must use the text "0x#" in a message exactly as it appears, a \ character at the front will allow it to be used raw, "\0x#". Be aware: because it is extremely unlikely that Alicesoft would have made any deliberate use of "0x" in their message text, the decompiler does not check for any. If this is mistaken, you may need to apply the \ character to the compiled code, or other fixes.
+
+
+Next, prepare the program to compile the code to system3-sdl's Debug directory, so that it replacees the original ADISK.DAT file. Compile. Remove all subsequent [X]DISK.DAT files, as Sys0Decompiler always compiles to a single ADISK.DAT file. Remember that the code must be recompiled after every change to the files. 
+
+Once compiled, your code is converted to "new style." This term is used throughout the manuals for Sys0Decompiler and system3-sdl to account for differences with original Alicesoft code.
+
+Consider extracting Sys0Decompiler's session date to an external file for easy access if you need to change things temporarily in the future.
+
+See the Troubleshooting Guide included with the program if you encounter problems.
+
+Test the program again in system3-sdl.
+
+
+
+Step 5 - system3-sdl Internal Localization
+
+Some data, especially for System 1, is internal to the interpreter rather than the extracted source code, and must be modified within the hard-coding of system3-sdl. This includes:
+
+	- Application Title Bar. nact_crc32.cpp, NACT::get_title().
+	
+	- Interpreter top menu (only if absolutely necessary): Resource files for your version of System in src\res[x]\Script1.rc.
+	
+	- Original DPS, System 1 only: nact.cpp, NACT::NACT(), a block of _tcscpy_s declarations that define string variables.
+	
+	- Various other examples of pre-localized text, such as the "Next Page" command used in menus, can also be found in the code and localized if necessary.
+	
+	
+	
+Step 6 - Toggle Hankaku Characters, Account for Zankaku
+
+Default zankaku (full-width) versions of Latin characters look oversized to English readers. Hankaku (half-width) characters can be activated using the Y 240, 1: command in the game's code.
+
+Typically, it is possible to set only a single copy of this command, but a search for additional Y 240 commands should be done to be certain. If found, the localization team must identify which sections require zankaku characters, perhaps for spacing purposes, and which do not. Note that Y 240 also switches between katakana (when using zankaku) and hiragana (when using hankaku), so some pre-existing instances of Y 240 may not be relevant to an English localization in any way.
+
+Note that it is VERY IMPORTANT that you apply Y 240, 1: if you are using alternate fonts. Many fonts do not include full-width characters, and errors or invisible characters may occur if you do not make the switch.
+
+
+	
+Step 7 - Common system3-sdl Modifications
+
+As an open-source program system3-sdl can be modified as necessary to provide for the localization of your specific game. That said, some framework is already in place for certain common fixes. This section will also list important sections to be aware of for specific projects.
+
+
+	Program Arguments
+	
+		For ease of use, program arguments should be prepared for the user ahead of time using whatever method is most appropriate for the platform. For example, on Windows, prepare a Shortcut with the arguments already assigned. See https://github.com/kichikuou/system3-sdl2 for additional details.
+		
+			-gamedir: Use this to change the game's data directory (the directory where the [X]CG.DAT, [X]DISK.DAT, [X]MUS.DAT, and AG00.DAT files are contained). By default, the game will search for its data in the same directory as the executible.
+			
+			-savedir: Use this to change the game's save directory (the directory where the ASLEEP_[X].DAT files are contained). If the directory does not exist, it will be created. By default, the game will search for saves in the same directory as the executible.
+			
+			-game: Used to override the CRC32 check that determines which game is being played. This is REQUIRED if the game has been modified from the Alicesoft original. A shortlist is provided below under the heading "Valid -game ID Codes," but see https://github.com/kichikuou/system3-sdl2 or nact_crc32.cpp for a full list.
+			
+			-fontfile: Specifies the path to the game's monospace font #0. By default, the executible will look for MTLc3m.ttf (MotoyaLCedar), including in this distro under Apache License 2.0. Make sure to include any applicable licenses for the fonts you choose to use in your game. See "Multiple Font Files" below for more details.
+			
+				-fontfile1: Set monospace font #1.
+				-fontfile2: Set monospace font #2.
+			
+			-vfontfile: Specifies the path to the game's variable-width font #0. See "Variable Width Fonts" below for details on how to use this. A variable-width font is NOT loaded by default, and if a valid font is not provided, the game will disable variable-width font use.  Make sure to include any applicable licenses for the fonts you choose to use in your game.
+			
+				-vfontfile1: Set variable-width font #1.
+				-vfontfile2: Set variable-width font #2.
+			
+			-fontadjust: Allows the developer to correct errors with variable-width font #0. See "Variable Width Fonts" below for details.
+			
+				-fontadjust1: Correct variable-width font #1.
+				-fontadjust2: Correct variable-width font #2.
+			
+			-noantialias: Disables text anti-aliasing, which is active by default.
+			
+			-playlist: Specifies the file path of a text file that defines a list of CD audio tracks. See "Playing CD Music" for more details.
+			
+			-lang: Enables language-specific support. Recommend using three-letter language codes ala ISO 639-1, etc, to the creator's preference. Default is "JPN", English projects should use "ENG".
+			
+			
+	Valid -game ID Codes
+	
+		This is a shortlist of valid codes for the -game command. See https://github.com/kichikuou/system3-sdl2 or nact_crc32.cpp for the full list. If a code is not listed for a game, it will have to be added, but be warned that this suggests the game is not supported yet and will require additional programming. Some games (such as Toushin Toshi Hint) may have codes but still not be supported!
+		
+			System 1: bunkasai, crescent, dps, dps_sg_fahren, dps_sg_katei, dps_sg_nobunaga, dps_sg2_antique, dps_sg2_ikenai, dps_sg2_akai, dps_sg3_rabbit, dps_sg3_sinkon, dps_sg3_sotsugyou, fukei, intruder, tengu, toushin_hint, little_vampire, yakata.
+			
+			System 2: ayumi_hint, ayumi_proto, dalk_hint, drstop, prog_fd, rance3_hint, sdps_maria, sdps_tono, sdps_kaizoku, yakata2.
+			
+			System 3.0: ambivalenz_fd, ambivalenz_cd, ayumi_cd, ayumi_fd, ayumi_live_256, ayumi_live_full, dps_all, funnybee_cd, funnybee_fd, hashirionna2, mugen, ningyo, onlyyou, onlyyou_demo, otome, prog_cd, prog_omake, rance41, rance42, toushin2_gd, toushin2_sp, yakata3_cd, yakata3_fd.
+			
+
+	Changing the Title Bar
+	
+		The contents of the title bar are hardcoded in system3-sdl2. For this reason, English defaults are provided, but may not match the name a localization team wants on their final product (many are simply transliterations of the Japanese title). To change the English name, either contact me with the name for a new build, or change the hardcoded value yourself in nact_crc32.cpp. Locate the crc_table variable, find your game's ID, and change the title_eng parameter located just to the right of the Japanese title. If the parameter is blank (i.e. a set of empty quotes, ""), the Japanese title will be used. This is a helpful way to indicate when the titles are deliberately identical, such as when a game was already titled in English.
+		
+
+	Playing CD Music:
+	
+		To play CD music, use the -playlist program argument to set the file path to a plain-text file containing a directory of CD audio tracks. The lines are converted 1-to-1 to the equivalent track in-game, so the first line is track 1, the second track 2, etc. Note that the first line is generally not used, because track 1 of game CD is usually a data track. Comment out this line using the # character. Example:
+		
+			# This line is ignored
+			BGM/track02.mp3
+			BGM/track03.mp3
+			...
+			
+			
+	Multiple Fonts
+	
+		This version of SysEng can use upwards of three monospace fonts and three variable-width fonts. Fonts must be loaded at program launch using program arguments, as described above. If not specified, the game will load the default monospace font into all slots, but will leave variable-width fonts (and in-game attempts to use them) disabled. 
+		
+		By default, the program uses monospace font 0, and font changes have to be confirmed in the game's code. The game stores the current monospace and variable-width font for both the menu and the text field. It will use either the monospace or variable-width font on request, using the Y 242 or Y 243 commands. If you change the current font when it is not active, the change will not be visible.  Note that menus are not refreshed automatically when properties are changed (in keeping with Alicesoft's implemention of menu size changes), so the menu must be be reloaded manually to display changes. 
+		
+		The following commands affect font operations. See the System Command Manual for more details.
+		
+			Y 240, X: - Toggle hankaku or zankaku characters. Very important, see "Step 6," above.
+			Y 242, X: - Menu monospace toggle. Set 1 for monospace, 0 for variable-width.
+			Y 243, X: - Text monospace toggle.
+			Y 244, X: - Menu monospace font selection. Set 0 for fontfile, 1 for fontfile1, 2 for fontfile2.
+			Y 245, X: - Text monospace font selection.
+			Y 246, X: - Menu variable-width font selection.
+			Y 247, X: - Text variable-width font selection.
+		
+		
+	Multiple Fonts
+	
+		This version of SysEng can use upwards of three monospace fonts and three variable-width fonts. 
+		
+		
+	Variable-Width Font Misalignment:
+		
+		Due to inconsitencies in various font files, some variable-width fonts may disable errors when rendered into system3-sdl, especially when anti-aliasing is disabled using the -noantialias command. To fix these, apply the -fontadjust argument (use -fontadjust for variable-width font #0, -fontadjust1 for font #1, and so on), followed by a string of arguments contiaining adjustment data. This works in the following format:
+		
+			[the character to adjust]([the amount to move to the right], [the amount to move downwards])
+			
+		For example, the argument "s(0,-1)" would move the 's' character 0 pixels to the right, and 1 character up. Continue with additional characters as necessary. Do not use spaces, just have the arguments flow from one to another. For example: "s(0,-1)9(1,0)" adjusts first the character 's', then the character '9'.
+		
+			Known Problem Fonts:
+				Times New Roman, no alias:  -fontadjust "s(0,-1)"
+				
+		
+		
+	System 1 Openings
+	
+		Some System 1 games use special, interpreter-hardeded opensings that occurs at the start of a run that is not included in the decompiled code. This code can be found at nact_sys1.cpp, NACT::opening(). Not all games are accounted for.
+		
+		
+	System 1 Music Loops
+	
+		Some System 1 games do not use properly looping music files. For a simple fix, go to mako.cpp, MAKO::thread() and look for the fix created for Little Vampire, as identified by #if defined(_VAMPIRE), and add your own game's tag to the list. This will enable music looping, but be warned, is it will also prevent S 0: commands from stopping music playback. The best way around this would be to backport the Y 16 command from System 3 to have it stop the music for you, and to replace all existing S 0: commands with Y 16, 0:.
+	
+	
+	System 3 - Issues with Horizontal Graphics and Animations:
+	
+		system3-sdl's base program includes optimization code for older games using the VSP image format, however these fixes often create issues with horiontal placement and movement. If you are noticing such issues, add the preprocessor tag X_COORD_OVERRIDE to see if it fixes the issue.
+		
+		
+	Variant Commands
+		
+		Some games require a variant set of commands to the System standard. This most commonly refers to variant extend commands in System 1 (Y and Z) and System 2 and 3.0 (only Z; Y commands count in the hundreds, but seem standardized from System 2 onwards. Some System 3.0 Z commands may match the standardized Z command from System 3.5, as well).
+		
+		That said, some games aren't so organized and change all sorts of internals. When variant commands arise, extensive modification may be required, sometimes even creating all new variant functions with alternate argument counts. Use the game's preprocessor tag to seperate its unique commands, and strongly consider sharing your findings so that other programmers can benefit from your discoveries, just in case they apply to other games of the era.
+		
+		
+		
+Step 9 - Image Localization
+
+Images containing text must be extracted and modified using image modification programs. To extract them, use the program ALDExplorer2, which must also be used to replace the original files once the editing is complete.
+
+Note that ALDExplorer2 does not currently support the older version of VSP images used in System 1 and 2 games, which is another reason to prioritize remakes over these originals. VSP images used in System 3 and later System 3.5 should work fine, and some System 2 examples may also work.
+
+If necessary, these images could be recreated from screenshots and then overwritten with a modern form, but this is not recommended unless absolutely necessary.
+
+		
+		
+Step 10 - Full Text Localization
+
+At this stage, the game can be localized through direct editing of the code's page[x].adv files, and of the !objects.adv and !verbs.adv files. While System 1-3.0 code can be incredibly opaque, the text localizer typically only needs to deal with text encloded in single quotes, and can ignore the rest. A Find command across files can locate every instance of single quotes, and since the original Japanese text rarely if ever uses any, this search should be definitive.
+
+Text-related commands are described in brief below to help the localizer. For full details, see the System 1-3.0 manuals included with Sys0Decompiler.
+
+
+Single Quotes, the R and A Commands
+
+	Single quotes at the start of a line indicate text that outputs to the current message box, typically the box at the bottom of the window. System does not include automatic line-breaks, so the localizer will have to insert those manually. The localizer should text the width of the messsage box by filling an early-game message with a temporary string of characters to see how many end up fitting inside the box).
+
+	The R command inserts a line break (note that R is not followed by a colon, like other commands, and adding one will cause errors). The A command ends the current "screen" of messages and will wait for user input, at which point it will proceed to the next screen (the A command also does not have a colon). If enough R commands are entered to move beyond the current screen of text, the overflow will be treated in the same fashion as an A command.
+	
+	
+Y 1 Command
+
+	Y 1, 0: clears the current message box manually in nearly all System games.
+	
+	
+B Commands and Y 7
+
+	These commands are related to created pop-up message boxes, a complicated subject. See the manual for full details. The B 3 command defines the bounds of the box, including the pixel coordinate of the top left and bottom right corners, which may need to be modified for your localization.
+
+
+M and X Commands
+	
+	M commands store text for later. They are followed by a string of characters in single quotes, then a colon. Example:
+
+		M 'Text':
+		
+	Text stored by M commands are later used via the X command. See the manual for more details of both.
+
+
+H Commands
+
+	The H command outputs numeric variables directly to the current message box. The number that immediately follows the H indicates certain formatting properties, see the manual for more details.
+
+	
+$ Commands
+
+	$ commands defines a menu item. For example, a combat mode will include a menu item that reads "Attack." $ commands are unusual in that it can take multiple lines of code to define a single menu item. The first line of a menu indicates where the menu will go in the code, and is not necessarily relevent for a perfunctory understanding of the code. The lines the follow define the text that goes into the menu, followed by another $ that appears on its own. Typically this is simple, and appears as follows:
+
+		$ lblLabel $
+		'Text'
+		$
+
+	More complicated menus may also appear, with multiple lines of code between the $ commands. All the text localizer needs to know is that the text inside the quotes must be localized.
+
+	Menu space is typically more limited than other text. You may wish to test the width of the menu in the same way that you did the message box.
+
+
+Objects and Verbs, [ and : Commands
+
+	Early System games were built around a collection of verbs and objects that would be used to create the games menus (via [ and : commands). For example, you might use the verb "Look" to examine an object, a "Treasure Chest." The text for these elements can be found in the file !objects.adv and !verbs.adv, with each object and verb appearing on its own line. These files should also be localized and compiled along with the page files.
+
+	The string's line number corresponds to the number used by [ and : commands during the game (so the verb on line 20 is referred to by the numeral 20 in those commands).
+	
+	
+
+Step 11 - Prepping for Distribution
+
+After extensive localization and testing, you should compile the Release build of your version of system3-sdl. Make sure the same project-specific preprocessor definitions are in place for this build. Make sure to include a copy of each of the game's data files, including unmodified originals and your most recent versions of ADISK.DAT, AG00.DAT, and any modified [X]CG.dat files, CD music directories, and fonts.
+
+Please add credit to your Readme acknowledging system3-sdl and Sys0Decompiler, and perhaps linking to its distribution page. Spreading the word about these programs may help other Alicesoft retro localizations come to life!
+
+Good luck1
+
+
+
+
+Troubleshooting
+
+Text is Invisible, Menu May Breaks
+Not all fonts support all characters. For example, a fontintended for English use might be missing Japanese character or even zankaku (Japanese full-width) versions of Latin characters. This is especially true of variable-width fonts. Make sure your game uses the Y 240, Y242 and Y243 commands to select your intended character set as explained above. Character set combinations can include:
+
+	1. Hankaku/Monospace
+	2. Hankaku/Variable-Width
+	3. Zankaku/Monospace
+	4. Zankaku/Variable-Width
+	
+If your font does not support your chosen character set, the text will appear invisible and the menu may experience errors.

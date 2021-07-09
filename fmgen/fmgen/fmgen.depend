@@ -1,0 +1,44 @@
+# depslib dependency file v1.0
+1606364977 source:h:\alicesoft\alicesoft system 3.x tools\fmgen\fmgen\fmtimer.cpp
+	"fmtimer.h"
+
+1606364983 h:\alicesoft\alicesoft system 3.x tools\fmgen\fmgen\fmtimer.h
+	"../common/types.h"
+
+1605923853 h:\alicesoft\alicesoft system 3.x tools\fmgen\common\types.h
+
+1606364992 source:h:\alicesoft\alicesoft system 3.x tools\fmgen\fmgen\psg.cpp
+	<math.h>
+	"../common/types.h"
+	"../common/misc.h"
+	"psg.h"
+
+1605923853 h:\alicesoft\alicesoft system 3.x tools\fmgen\common\misc.h
+
+1605923853 h:\alicesoft\alicesoft system 3.x tools\fmgen\fmgen\psg.h
+
+1606365002 source:h:\alicesoft\alicesoft system 3.x tools\fmgen\fmgen\fmgen.cpp
+	<math.h>
+	<assert.h>
+	"../common/misc.h"
+	"fmgen.h"
+	"fmgeninl.h"
+
+1606365018 h:\alicesoft\alicesoft system 3.x tools\fmgen\fmgen\fmgen.h
+	"../common/types.h"
+
+1605923853 h:\alicesoft\alicesoft system 3.x tools\fmgen\fmgen\fmgeninl.h
+
+1606364954 source:h:\alicesoft\alicesoft system 3.x tools\fmgen\fmgen\opm.cpp
+	<stdlib.h>
+	<math.h>
+	<assert.h>
+	"../common/misc.h"
+	"opm.h"
+	"fmgeninl.h"
+
+1606365026 h:\alicesoft\alicesoft system 3.x tools\fmgen\fmgen\opm.h
+	"fmgen.h"
+	"fmtimer.h"
+	"psg.h"
+

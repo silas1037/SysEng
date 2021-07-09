@@ -1,0 +1,598 @@
+/*
+	ALICE SOFT SYSTEM 3 for Win32
+
+	[ NACT ]
+*/
+
+#include <cstring>
+#include <stdarg.h>
+#include "nact.h"
+#include "ags.h"
+#include "mako.h"
+#include "msgskip.h"
+#include "dri.h"
+#include "../config.h"
+#include "../fileio.h"
+#include "crc32.h"
+
+extern SDL_Window* g_window;
+
+// 初期化
+
+NACT::NACT(int sys_ver, uint32 crc32_a, uint32 crc32_b, const Config& config)
+	: sys_ver(sys_ver), crc32_a(crc32_a), crc32_b(crc32_b), lang(get_language())
+{
+	platform_initialize();
+
+	// AG00.DAT読み込み
+	FILEIO* fio = new FILEIO();
+	if(fio->Fopen("AG00.DAT", FILEIO_READ_BINARY)) {
+		int d0, d1, d2, d3;
+		char string[MAX_CAPTION];
+		fio->Fgets(string, MAX_CAPTION);
+		sscanf_s(string, "%d,%d,%d,%d", &d0, &d1, &d2, &d3);
+		for(int i = 0; i < d1; i++) {
+			// 動詞の読み込み
+			fio->Fgets(string, MAX_CAPTION);
+			memcpy(caption_verb[i], string, sizeof(string));
+		}
+		for(int i = 0; i < d2; i++) {
+			// 目的語の読み込み
+			fio->Fgets(string, MAX_CAPTION);
+			memcpy(caption_obj[i], string, sizeof(string));
+		}
+		fio->Fclose();
+	}
+	delete fio;
+
+	// ADISK.DAT
+	if (crc32_a == CRC32_PROG_OMAKE)
+		strcpy_s(adisk, 16, "AGAME.DAT");
+	else
+		strcpy_s(adisk, 16, "ADISK.DAT");
+
+	// シナリオ管理
+	scenario_data = NULL;
+	load_scenario(0);
+	scenario_page = 0;
+	scenario_addr = 2;
+	label_depth = page_depth = 0;
+
+	// 変数初期化
+	memset(var, 0, sizeof(var));
+	memset(var_stack, 0, sizeof(var_stack));
+	memset(tvar, 0, sizeof(tvar));
+	memset(tvar_stack, 0, sizeof(tvar_stack));
+
+	// コマンド初期化
+	column = true;		// 座標モード
+	wait_keydown = true;	// ウェイト時のキー受付
+	seed = SDL_GetTicks();	// 乱数の種
+	text_wait_time = 100;	// メッセージ表示のウェイト
+	text_wait_enb = false;
+	mouse_sence = 16;	// マウス移動感知
+
+	menu_window = text_window = 1;
+	menu_index = 0;
+	show_push = true;
+	clear_text = true;
+
+	verb_obj = false;
+	set_palette = false;
+
+	tvar_index = 0;
+
+	pcm_index = 0;
+	memset(pcm, 0, sizeof(pcm));
+
+	// 各種クラス生成
+	ags = new AGS(this, config);
+	mako = new MAKO(this, config);
+	msgskip = new MsgSkip(this);
+
+#ifdef USE_JOY
+	// 入力初期化
+	joy_num = joyGetNumDevs();
+	if(joy_num) {
+		joyGetDevCaps(JOYSTICKID1, &joycaps, sizeof(JOYCAPS));
+	}
+#endif
+
+    x_coord_override = false;
+    if(crc32_a == CRC32_RANCE41_ENG || crc32_a == CRC32_RANCE42_ENG) {
+        x_coord_override = true;
+    }
+
+	terminate = false;
+	restart_after_terminate = false;
+}
+
+NACT::~NACT()
+{
+	delete ags;
+	delete mako;
+	delete msgskip;
+
+	// シナリオ開放
+	if(scenario_data) {
+		free(scenario_data);
+	}
+
+	platform_finalize();
+}
+
+bool NACT::mainloop()
+{
+	msgskip->load_from_file();
+
+	int sleep_cnt = 0;
+	while(!terminate) {
+		execute();
+		// 512コマンド実行毎にSleep(10)
+		if(!(sleep_cnt = (sleep_cnt + 1) & 0x1ff)) {
+			sys_sleep(10);
+		}
+	}
+	return restart_after_terminate;
+}
+
+void NACT::scenarioAddrToStart() {
+	// In old style, scenario files start at addr 2 without exception. This is also generally the case in
+	// new style.
+	scenario_addr = 2;
+
+	// However, there is one exception: in new style, page 0, scenario_addr 2-4 are home to the REV tag,
+	// so we have to skip to 5.
+	if(newStyle && scenario_page == 0)
+		scenario_addr = 5;
+}
+
+// コマンドパーサ
+
+void NACT::execute()
+{
+	// アドレスの確認
+	if(scenario_addr < 2 || scenario_addr >= scenario_size) {
+		fatal("Scenario error");
+	}
+
+	// 致命的なエラー発生 or 正常終了
+	if(fatal_error) {
+		if(!post_quit) {
+			terminate = true;
+		}
+		post_quit = true;
+		return;
+	}
+
+	if(sys_ver == 1 && scenario_page == 0 && scenario_addr == 2) {
+		opening();
+	}
+
+	// Skip SysEng's deprecated "new style" marker
+	if (scenario_page == 0 && scenario_addr == 2 &&
+		memcmp(&scenario_data[2], "REV", 3) == 0) {
+		scenario_addr = 5;
+	}
+
+	// １コマンド実行
+	prev_addr = scenario_addr;
+	uint8 cmd = getd();
+
+	if(set_palette && cmd != 'P') {
+		// パレット設定が終わった
+		ags->flush_screen(true);
+		set_palette = false;
+	}
+	if(verb_obj && cmd != '[' && cmd != ':') {
+		// 動詞-目的語メニューの表示
+		scenario_addr--;
+		cmd_open_verb();
+		return;
+	}
+
+	switch(cmd) {
+		case '!':
+			cmd_calc();
+			break;
+		case '{':
+			cmd_branch();
+			break;
+		case '}':
+			break;
+		case '@':
+			cmd_label_jump();
+			break;
+		case '\\':
+			cmd_label_call();
+			break;
+		case '&':
+			cmd_page_jump();
+			break;
+		case '%':
+			cmd_page_call();
+			break;
+		case '$':
+			cmd_set_menu();
+			break;
+		case '[':
+			cmd_set_verbobj();
+			break;
+		case ':':
+			cmd_set_verbobj2();
+			break;
+		case ']':
+			cmd_open_menu();
+			break;
+		case 'A':
+			cmd_a();
+			break;
+		case 'B':
+			cmd_b();
+			break;
+		case 'D':
+			cmd_d();
+			break;
+		case 'E':
+			cmd_e();
+			break;
+		case 'F':
+			cmd_f();
+			break;
+		case 'G':
+			cmd_g();
+			break;
+		case 'H':
+			cmd_h();
+			break;
+		case 'I':
+			cmd_i();
+			break;
+		case 'J':
+			cmd_j();
+			break;
+		case 'K':
+			cmd_k();
+			break;
+		case 'L':
+			cmd_l();
+			break;
+		case 'M':
+			cmd_m();
+			break;
+		case 'N':
+			cmd_n();
+			break;
+		case 'O':
+			cmd_o();
+			break;
+		case 'P':
+			cmd_p();
+			break;
+		case 'Q':
+			cmd_q();
+			break;
+		case 'R':
+			cmd_r();
+			break;
+		case 'S':
+			cmd_s();
+			break;
+		case 'T':
+			cmd_t();
+			break;
+		case 'U':
+			cmd_u();
+			break;
+		case 'V':
+			cmd_v();
+			break;
+		case 'W':
+			cmd_w();
+			break;
+		case 'X':
+			cmd_x();
+			break;
+		case 'Y':
+			cmd_y();
+			break;
+		case 'Z':
+			cmd_z();
+			break;
+		case '\'': case '"':
+			message(cmd);
+			break;
+		default:
+			if(is_1byte_message(cmd) || is_2byte_message(cmd)) {
+				ungetd();
+				message(0);
+			} else {
+				if(cmd >= 0x20 && cmd < 0x7f) {
+					fatal("Unknown Command: '%c' at page = %d, addr = %d", cmd, scenario_page, prev_addr);
+				} else {
+					fatal("Unknown Command: %02x at page = %d, addr = %d", cmd, scenario_page, prev_addr);
+				}
+			}
+			break;
+	}
+}
+
+void NACT::message(uint8_t terminator)
+{
+	char buf[200];
+	if (terminator) {  // SysEng
+		uint8* p = &scenario_data[scenario_addr];
+		char* q = buf;
+		while (*p != terminator) {
+			if (*p == '\\')
+				p++;
+			*q++ = *p++;
+		}
+		*q = '\0';
+		scenario_addr += p + 1 - &scenario_data[scenario_addr];
+	} else {
+		uint8* begin = &scenario_data[scenario_addr];
+		uint8* end = begin;
+		for (;;) {
+			if (is_1byte_message(*end))
+				end++;
+			else if (is_2byte_message(*end))
+				end += 2;
+			else
+				break;
+		}
+		int len = end - begin;
+		scenario_addr += len;
+
+		strncpy(buf, reinterpret_cast<char*>(begin), len);
+		buf[len] = '\0';
+	}
+
+	ags->draw_text(buf, text_wait_enb);
+
+	if(crc32_a == CRC32_DPS || crc32_a == CRC32_DPS_SG || crc32_a == CRC32_DPS_SG2 || crc32_a == CRC32_DPS_SG3) {
+		if(!ags->draw_menu) {
+			text_refresh = false;
+		}
+	}
+	if (!ags->draw_menu)
+		msgskip->on_message(scenario_page, scenario_addr);
+
+	// TODO: Convert hankaku to zenkaku
+	output_console(buf);
+}
+
+void NACT::text_wait()
+{
+	Uint32 dwTime = SDL_GetTicks() + text_wait_time;
+	for(;;) {
+		if(terminate) {
+			return;
+		}
+		RND = get_key();
+		if(RND && wait_keydown) {
+			break;
+		}
+		if(dwTime <= SDL_GetTicks()) {
+			break;
+		}
+		sys_sleep(16);
+	}
+}
+
+void NACT::load_scenario(int page)
+{
+	if(scenario_data) {
+		free(scenario_data);
+	}
+	DRI* dri = new DRI();
+	if((scenario_data = dri->load(adisk, page + 1, &scenario_size)) == NULL) {
+		fatal("Cannot load scenario %d", page);
+	}
+	delete dri;
+}
+
+// 下位関数
+
+int NACT::menu_select(int num_items)
+{
+	if (msgskip->get_flags() & MSGSKIP_STOP_ON_MENU)
+		msgskip->activate(false);
+
+	// メニュー表示
+	ags->open_menu_window(menu_window);
+
+	// マウス移動
+	int sx = ags->menu_w[menu_window - 1].sx;
+	int sy = ags->menu_w[menu_window - 1].sy;
+	int ex = ags->menu_w[menu_window - 1].ex;
+	int mx = ex - 16;
+	int my = sy + 10;
+	int height = ags->menu_font_size + 4;
+	int current_index = 0;
+
+	set_cursor(mx, my);
+	wait_after_open_menu();
+
+	// メニュー選択
+	for(bool selectable = true;;) {
+		// 入力待機
+		int val = 0, current_mx = mx, current_my = my;
+		for(;;) {
+			if(terminate) {
+				return -1;
+			}
+			get_cursor(&current_mx, &current_my);
+			int dx = mx - current_mx;
+			int dy = my - current_my;
+			if (dx*dx + dy*dy > 10)
+				break;
+			if((val = get_key()) != 0) {
+				sys_sleep(100);
+				break;
+			}
+			sys_sleep(16);
+		}
+		if(val) {
+			for(;;) {
+				if(terminate) {
+					return -1;
+				}
+				if(!get_key()) {
+					break;
+				}
+				sys_sleep(16);
+			}
+		}
+
+		if(val == 0) {
+			// マウス操作
+			mx = current_mx; my = current_my;
+			int index = (my - sy) / height;
+			if(sx <= mx && mx <= ex && 0 <= index && index < num_items) {
+				current_index = index;
+				ags->redraw_menu_window(menu_window, current_index);
+				selectable = true;
+			} else {
+				selectable = false;
+			}
+		} else if(val == 1 || val == 2 || val == 4 || val == 8) {
+			if(val == 1) {
+				current_index = current_index ? current_index - 1 : num_items - 1;
+			} else if(val == 2) {
+				current_index = (current_index < num_items - 1) ? current_index + 1 : 0;
+			} else if(val == 4) {
+				current_index = 0;
+			} else if(val == 8) {
+				current_index = num_items - 1;
+			}
+			ags->redraw_menu_window(menu_window, current_index);
+			selectable = true;
+		} else if(val == 16 && selectable) {
+			break;
+		} else if(val == 32) {
+			current_index = -1;
+			break;
+		}
+	}
+
+	// 画面更新
+	ags->close_menu_window(menu_window);
+	if(clear_text) {
+		ags->clear_text_window(text_window, true);
+	}
+
+	return current_index;
+}
+
+uint16 NACT::random(uint16 range)
+{
+	// xorshift32
+	seed = seed ^ (seed << 13);
+	seed = seed ^ (seed >> 17);
+	seed = seed ^ (seed << 15);
+	return (uint16)(((uint32)range * (seed & 0xffff)) >> 16) + 1;
+}
+
+void NACT::wait_after_open_menu()
+{
+	// 連打による誤クリック防止
+	Uint32 dwTime = SDL_GetTicks();
+	Uint32 dwWait = dwTime + 400;
+
+	while(dwTime < dwWait) {
+		if(terminate) {
+			return;
+		}
+/*
+		if(get_key() == 16) {
+			break;
+		}
+*/
+		sys_sleep(10);
+		dwTime = SDL_GetTicks();
+	}
+
+	// クリック中の間は待機
+	for(;;) {
+		if(terminate) {
+			return;
+		}
+		if(!get_key()) {
+			break;
+		}
+		sys_sleep(10);
+	}
+}
+
+void NACT::sys_sleep(int ms) {
+	pump_events();
+	ags->update_screen();
+#ifdef __EMSCRIPTEN__
+	emscripten_sleep(ms);
+#else
+	SDL_Delay(ms);
+#endif
+}
+
+// WinMainとのインターフェース
+
+int NACT::get_screen_height()
+{
+	return ags->screen_height;
+}
+
+void NACT::select_cursor()
+{
+	ags->select_cursor();
+}
+
+void NACT::fatal(const char* format, ...) {
+	char buf[512];
+	va_list args;
+	va_start(args, format);
+	vsnprintf(buf, sizeof buf, format, args);
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "system3", buf, g_window);
+	fatal_error = true;
+}
+
+NACT* NACT::create(const Config& config) {
+	uint32 crc32_a = NACT::calc_crc32("ADISK.DAT", config.game_id);
+	uint32 crc32_b = NACT::calc_crc32("BDISK.DAT", config.game_id);
+	int sys_ver = NACT::get_sys_ver(crc32_a, crc32_b);
+	switch (sys_ver) {
+	case 1:
+		return new NACT_Sys1(crc32_a, crc32_b, config);
+	case 2:
+		return new NACT_Sys2(crc32_a, crc32_b, config);
+	default:
+		return new NACT_Sys3(crc32_a, crc32_b, config);
+	}
+}
+
+
+// Variable indicies are sometimes referenced (namely in the System 2 V command) in cali format. No existing
+// function requires variable indicies, so we had to create this.
+//
+// As a simplified version of the cali process, it will read the first and sometimes second bytes, then
+// ignore the rest until it sees a cali-ending 0x7F character.
+int NACT::get_var_index() {
+	uint8 dat = getd();
+	int varIndex = -1;
+
+	// Single-byte variable index.
+	if(0x80 <= dat && dat <= 0xbf) {
+		varIndex = dat & 0x3f;
+	}
+	// Double-byte variable index. Ignore other values.
+	else if(0xc0 <= dat && dat <= 0xff) {
+		varIndex = ((dat & 0x3f) << 8) | getd();
+	}
+
+	// Read up to the next 0x7F character.
+	do {
+		dat = getd();
+	} while(dat != 0x7f);
+
+	return varIndex;
+}

@@ -1,0 +1,2224 @@
+# depslib dependency file v1.0
+1589163491 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\main.cpp
+	<exception>
+	<string>
+	<iostream>
+	<SDL2/SDL.h>
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_joystick.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_metal.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_shape.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887078 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<wchar.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	<sal.h>
+	"begin_code.h"
+	"close_code.h"
+
+1583887078 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1583887078 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\begin_code.h
+
+1583887078 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\close_code.h
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<sys/cpuinline.h>
+	<mbarrier.h>
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887078 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	<process.h>
+	<stdlib.h>
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<arm_neon.h>
+	<armintr.h>
+	<arm_neon.h>
+	<arm64intr.h>
+	<arm64_neon.h>
+	<mm3dnow.h>
+	<immintrin.h>
+	<mmintrin.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	<pmmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887078 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"SDL_endian.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887078 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1583887078 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887078 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_metal.h
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887078 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_sensor.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887078 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_shape.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887078 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887078 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887078 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1610859497 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\res3\script1.rc
+	"resource.h"
+	"winres.h"
+	"afxres.h"
+
+1610857915 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\res3\resource.h
+
+1591233879 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\ags_bmp.cpp
+	"ags.h"
+	"../fileio.h"
+
+1623300396 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\ags.h
+	<stdio.h>
+	"../common.h"
+	"nact.h"
+	<SDL_ttf.h>
+	<map>
+
+1625774208 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\common.h
+	<SDL.h>
+	<assert.h>
+	<limits.h>
+	<stdio.h>
+	<cstring>
+	<cwchar>
+	<emscripten.h>
+	<stdlib.h>
+
+1623307517 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\nact.h
+	<string>
+	<stdio.h>
+	"../common.h"
+	"localization.h"
+
+1547325881 c:\sdl2_ttf-2.0.15\i686-w64-mingw32\include\sdl2\sdl_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174208 c:\emsdk\upstream\emscripten\system\include\emscripten.h
+	"emscripten/emscripten.h"
+
+1589174208 c:\emsdk\upstream\emscripten\system\include\emscripten\emscripten.h
+	"em_asm.h"
+	"em_macros.h"
+	"em_js.h"
+	<SDL/SDL.h>
+	<time.h>
+
+1589174208 c:\emsdk\upstream\emscripten\system\include\emscripten\em_asm.h
+
+1589174208 c:\emsdk\upstream\emscripten\system\include\emscripten\em_macros.h
+
+1589174208 c:\emsdk\upstream\emscripten\system\include\emscripten\em_js.h
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_hints.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"SDL_compat.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174211 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_config.h
+	"SDL_platform.h"
+	"SDL_config_windows.h"
+	"SDL_config_macosx.h"
+	"SDL_config_iphoneos.h"
+	"SDL_config_android.h"
+	"SDL_config_nintendods.h"
+	"SDL_config_minimal.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\begin_code.h
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\close_code.h
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_config_windows.h
+	"SDL_platform.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_config_macosx.h
+	"SDL_platform.h"
+	<AvailabilityMacros.h>
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_config_iphoneos.h
+	"SDL_platform.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_config_android.h
+	"SDL_platform.h"
+	<stdarg.h>
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_config_nintendods.h
+	"SDL_platform.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_config_minimal.h
+	"SDL_platform.h"
+	<stddef.h>
+	<stdarg.h>
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<intrin.h>
+	<libkern/OSAtomic.h>
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174211 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1589174211 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174211 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_pixels.h
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174211 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1589174211 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174211 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174211 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174211 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1589174210 c:\emsdk\upstream\emscripten\system\include\sdl\sdl_compat.h
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1610861052 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\ags_cursor.cpp
+	"ags.h"
+	<string.h>
+
+1610861113 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\ags_gm3.cpp
+	"ags.h"
+	<string.h>
+
+1623300509 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\ags_text.cpp
+	<string.h>
+	"ags.h"
+	"../utfsjis.h"
+	"../texthook.h"
+
+1589092898 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\utfsjis.h
+	"common.h"
+
+1589092898 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\texthook.h
+
+1610861132 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\ags_vsp.cpp
+	"ags.h"
+	"crc32.h"
+	<string.h>
+
+1623307708 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\crc32.h
+
+1623283975 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\ags_pms.cpp
+	"ags.h"
+	"crc32.h"
+	<string.h>
+
+1610861134 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\ags_vsp2l.cpp
+	"ags.h"
+	<string.h>
+
+1623221584 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\fileio.cpp
+	"fileio.h"
+	<string.h>
+	<stdlib.h>
+	<sys/types.h>
+	<dirent.h>
+	<emscripten.h>
+
+1623285362 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\fileio.h
+	<string>
+	<stdio.h>
+	<sys/stat.h>
+	"common.h"
+
+1623283954 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\ags_draw.cpp
+	"ags.h"
+	<tuple>
+	<utility>
+	<vector>
+	<string.h>
+	"dri.h"
+	"crc32.h"
+
+1591233879 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\dri.h
+	"../common.h"
+
+1625690421 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\ags.cpp
+	"ags.h"
+	<string>
+	"crc32.h"
+	"../config.h"
+	"../fileio.h"
+	<cmath>
+
+1610861107 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\ags_gl3.cpp
+	"ags.h"
+	<string.h>
+
+1623285386 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sdlmain.cpp
+	<string>
+	"common.h"
+	"config.h"
+	"fileio.h"
+	"sys/nact.h"
+	<direct.h>
+	<sys/stat.h>
+	<sys/types.h>
+	<emscripten.h>
+	<emscripten/html5.h>
+
+1589174208 c:\emsdk\upstream\emscripten\system\include\emscripten\html5.h
+
+1610861143 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\ags_window.cpp
+	"ags.h"
+	<string.h>
+
+1623284222 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\dri.cpp
+	"dri.h"
+	<string.h>
+	"crc32.h"
+	"../fileio.h"
+
+1623220240 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\mako_midi.cpp
+	"mako_midi.h"
+	"nact.h"
+	"dri.h"
+	"crc32.h"
+
+1591233879 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\mako_midi.h
+	<vector>
+	"../common.h"
+
+1623283483 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\nact_crc32.cpp
+	"nact.h"
+	<string.h>
+	"crc32.h"
+	"../fileio.h"
+
+1589175000 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\mako.cpp
+	<SDL.h>
+	<SDL_mixer.h>
+	"mako.h"
+	"mako_midi.h"
+	"dri.h"
+
+1540997992 c:\sdl2_mixer-2.0.4\i686-w64-mingw32\include\sdl_mixer.h
+	"SDL_stdinc.h"
+	"SDL_rwops.h"
+	"SDL_audio.h"
+	"SDL_endian.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1623284232 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\mako.h
+	<vector>
+	<stdio.h>
+	<limits.h>
+	<math.h>
+	"../common.h"
+	"nact.h"
+
+1623307137 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\nact_sys1.cpp
+	"nact.h"
+	"ags.h"
+	"mako.h"
+	"msgskip.h"
+	"crc32.h"
+	"../fileio.h"
+	"../texthook.h"
+
+1623307899 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\nact_sys2.cpp
+	<string>
+	"nact.h"
+	"ags.h"
+	"mako.h"
+	"msgskip.h"
+	"crc32.h"
+	"../fileio.h"
+	"../texthook.h"
+
+1589092898 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\texthook.cpp
+	<stdio.h>
+	"texthook.h"
+	<emscripten.h>
+
+1623307073 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\nact.cpp
+	<cstring>
+	<stdarg.h>
+	"nact.h"
+	"ags.h"
+	"mako.h"
+	"msgskip.h"
+	"dri.h"
+	"../config.h"
+	"../fileio.h"
+	"crc32.h"
+
+1623220709 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\nact_input.cpp
+	<windows.h>
+	<SDL_syswm.h>
+	"nact.h"
+	"ags.h"
+	"../texthook.h"
+
+1589092898 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\utfsjis.cpp
+	<stdlib.h>
+	<string.h>
+	"utfsjis.h"
+	"s2utbl.h"
+
+1589092898 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\s2utbl.h
+
+1623307950 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\nact_sys3.cpp
+	<time.h>
+	<sys/stat.h>
+	"nact.h"
+	"ags.h"
+	"mako.h"
+	"msgskip.h"
+	"crc32.h"
+	"../fileio.h"
+	"../texthook.h"
+
+1623221425 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\win\nact_win.cpp
+	<windows.h>
+	<windowsx.h>
+	<time.h>
+	"../sys/nact.h"
+	"SDL_syswm.h"
+	"../sys/ags.h"
+	"../sys/mako.h"
+	"../sys/msgskip.h"
+	"../win/resource.h"
+
+1583887078 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_syswm.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	<windows.h>
+	<Inspectable.h>
+	<X11/Xlib.h>
+	<X11/Xatom.h>
+	<directfb.h>
+	<UIKit/UIKit.h>
+	"SDL_egl.h"
+	"begin_code.h"
+	"close_code.h"
+
+1583887077 c:\sdl2-2.0.12\i686-w64-mingw32\include\sdl2\sdl_egl.h
+	<EGL/egl.h>
+	<EGL/eglext.h>
+	<stdint.h>
+	<inttypes.h>
+	<stdint.h>
+	<windows.h>
+	<Unknwn.h>
+	<mir_toolkit/mir_client_library.h>
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+
+1547325881 c:\sdl2_ttf-2.0.15\i686-w64-mingw32\include\sdl_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1540997992 c:\sdl2_mixer-2.0.4\i686-w64-mingw32\include\sdl2\sdl_mixer.h
+	"SDL_stdinc.h"
+	"SDL_rwops.h"
+	"SDL_audio.h"
+	"SDL_endian.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1623285302 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\win\mako.cpp
+	<windows.h>
+	<memory>
+	<string>
+	<SDL.h>
+	<SDL_syswm.h>
+	"../sys/mako.h"
+	"../sys/mako_midi.h"
+	"../fm/mako_fmgen.h"
+	"../config.h"
+	"../sys/dri.h"
+	"../sys/crc32.h"
+
+1625774303 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\resource.cpp
+	<windows.h>
+	"common.h"
+
+1603701905 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\linux\mako.cpp
+	<SDL.h>
+	<SDL_mixer.h>
+	"../sys/mako.h"
+	"../sys/mako_midi.h"
+	"../sys/dri.h"
+
+1603701890 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\linux\nact_linux.cpp
+	<stdio.h>
+	"../sys/nact.h"
+
+1606368602 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\fmgen\fmgen\fmgen.cpp
+	<math.h>
+	<assert.h>
+	"../common/misc.h"
+	"fmgen.h"
+	"fmgeninl.h"
+
+1605927453 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\fmgen\common\misc.h
+
+1606368618 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\fmgen\fmgen\fmgen.h
+	"../common/types.h"
+
+1605927453 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\fmgen\common\types.h
+
+1605927453 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\fmgen\fmgen\fmgeninl.h
+
+1606368577 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\fmgen\fmgen\fmtimer.cpp
+	"fmtimer.h"
+
+1606368583 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\fmgen\fmgen\fmtimer.h
+	"../common/types.h"
+
+1606368554 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\fmgen\fmgen\opm.cpp
+	<stdlib.h>
+	<math.h>
+	<assert.h>
+	"../common/misc.h"
+	"opm.h"
+	"fmgeninl.h"
+
+1606368626 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\fmgen\fmgen\opm.h
+	"fmgen.h"
+	"fmtimer.h"
+	"psg.h"
+
+1605927453 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\fmgen\fmgen\psg.h
+
+1606368592 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\fmgen\fmgen\psg.cpp
+	<math.h>
+	"../common/types.h"
+	"../common/misc.h"
+	"psg.h"
+
+1606368610 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\fmgen\fmgen\opna.cpp
+	<assert.h>
+	<math.h>
+	<stdio.h>
+	<string.h>
+	"../common/misc.h"
+	"opna.h"
+	"fmgeninl.h"
+
+1606368947 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\fmgen\fmgen\opna.h
+	"fmgen.h"
+	"fmtimer.h"
+	"psg.h"
+
+1608283491 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\fm\mako_fmgen.cpp
+	"mako_fmgen.h"
+	<algorithm>
+	<assert.h>
+	<string.h>
+
+1608283225 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\fm\mako_fmgen.h
+	"../../fmgen/fmgen/opna.h"
+	"makofm.h"
+
+1610865087 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\fm\makofm.h
+	<stdint.h>
+
+1623219741 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\fm\makofm.cpp
+	"makofm.h"
+	<algorithm>
+	<assert.h>
+	<stdlib.h>
+	<string.h>
+	"../common.h"
+
+1623220296 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\msgskip.h
+	"../common.h"
+
+1623220285 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\msgskip.cpp
+	"msgskip.h"
+	<string.h>
+	"nact.h"
+	"../fileio.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_joystick.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_metal.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_shape.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"SDL_locale.h"
+	"SDL_misc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<wchar.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	<sal.h>
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+	<sdkddkver.h>
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\begin_code.h
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\close_code.h
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<sys/cpuinline.h>
+	<mbarrier.h>
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	<process.h>
+	<stdlib.h>
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<arm_neon.h>
+	<armintr.h>
+	<arm_neon.h>
+	<arm64intr.h>
+	<arm64_neon.h>
+	<mm3dnow.h>
+	<immintrin.h>
+	<mmintrin.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	<pmmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"SDL_endian.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_sensor.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_metal.h
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_shape.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_locale.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_misc.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_syswm.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	<windows.h>
+	<Inspectable.h>
+	<X11/Xlib.h>
+	<X11/Xatom.h>
+	<directfb.h>
+	<UIKit/UIKit.h>
+	"SDL_egl.h"
+	<os2.h>
+	"begin_code.h"
+	"close_code.h"
+
+1608576391 c:\sdl2-2.0.14\i686-w64-mingw32\include\sdl2\sdl_egl.h
+	<EGL/egl.h>
+	<EGL/eglext.h>
+	<stdint.h>
+	<inttypes.h>
+	<stdint.h>
+	<windows.h>
+	<Unknwn.h>
+	<mir_toolkit/mir_client_library.h>
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+
+1623285326 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\win\resource.h
+
+1623221465 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\win\resource.rc
+	"resource.h"
+	"afxres.h"
+
+1623221549 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\config.h
+	<string>
+
+1622984887 h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\localization.h
+
+1622984887 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\sys\localization.cpp
+	"localization.h"
+
+1625689009 source:h:\alicesoft\alicesoft system 3.x tools\system3-sdl2\src\config.cpp
+	"config.h"
+	"common.h"
+	<stdio.h>
+	<string.h>
+	<direct.h>
+	<unistd.h>
+
+1606365002 source:d:\gal\aliceprogram\syseng 0.6 beta\fmgen\fmgen\fmgen.cpp
+	<math.h>
+	<assert.h>
+	"../common/misc.h"
+	"fmgen.h"
+	"fmgeninl.h"
+
+1605923853 d:\gal\aliceprogram\syseng 0.6 beta\fmgen\common\misc.h
+
+1606365018 d:\gal\aliceprogram\syseng 0.6 beta\fmgen\fmgen\fmgen.h
+	"../common/types.h"
+
+1605923853 d:\gal\aliceprogram\syseng 0.6 beta\fmgen\common\types.h
+
+1605923853 d:\gal\aliceprogram\syseng 0.6 beta\fmgen\fmgen\fmgeninl.h
+
+1606364977 source:d:\gal\aliceprogram\syseng 0.6 beta\fmgen\fmgen\fmtimer.cpp
+	"fmtimer.h"
+
+1606364983 d:\gal\aliceprogram\syseng 0.6 beta\fmgen\fmgen\fmtimer.h
+	"../common/types.h"
+
+1606364954 source:d:\gal\aliceprogram\syseng 0.6 beta\fmgen\fmgen\opm.cpp
+	<stdlib.h>
+	<math.h>
+	<assert.h>
+	"../common/misc.h"
+	"opm.h"
+	"fmgeninl.h"
+
+1606365026 d:\gal\aliceprogram\syseng 0.6 beta\fmgen\fmgen\opm.h
+	"fmgen.h"
+	"fmtimer.h"
+	"psg.h"
+
+1605923853 d:\gal\aliceprogram\syseng 0.6 beta\fmgen\fmgen\psg.h
+
+1606365010 source:d:\gal\aliceprogram\syseng 0.6 beta\fmgen\fmgen\opna.cpp
+	<assert.h>
+	<math.h>
+	<stdio.h>
+	<string.h>
+	"../common/misc.h"
+	"opna.h"
+	"fmgeninl.h"
+
+1606365347 d:\gal\aliceprogram\syseng 0.6 beta\fmgen\fmgen\opna.h
+	"fmgen.h"
+	"fmtimer.h"
+	"psg.h"
+
+1606364992 source:d:\gal\aliceprogram\syseng 0.6 beta\fmgen\fmgen\psg.cpp
+	<math.h>
+	"../common/types.h"
+	"../common/misc.h"
+	"psg.h"
+
+1625689009 source:d:\gal\aliceprogram\syseng 0.6 beta\src\config.cpp
+	"config.h"
+	"common.h"
+	<stdio.h>
+	<string.h>
+	<direct.h>
+	<unistd.h>
+
+1623221549 d:\gal\aliceprogram\syseng 0.6 beta\src\config.h
+	<string>
+
+1625774208 d:\gal\aliceprogram\syseng 0.6 beta\src\common.h
+	<SDL.h>
+	<assert.h>
+	<limits.h>
+	<stdio.h>
+	<cstring>
+	<cwchar>
+	<emscripten.h>
+	<stdlib.h>
+
+1623221584 source:d:\gal\aliceprogram\syseng 0.6 beta\src\fileio.cpp
+	"fileio.h"
+	<string.h>
+	<stdlib.h>
+	<sys/types.h>
+	<dirent.h>
+	<emscripten.h>
+
+1623285362 d:\gal\aliceprogram\syseng 0.6 beta\src\fileio.h
+	<string>
+	<stdio.h>
+	<sys/stat.h>
+	"common.h"
+
+1608279891 source:d:\gal\aliceprogram\syseng 0.6 beta\src\fm\mako_fmgen.cpp
+	"mako_fmgen.h"
+	<algorithm>
+	<assert.h>
+	<string.h>
+
+1608279625 d:\gal\aliceprogram\syseng 0.6 beta\src\fm\mako_fmgen.h
+	"../../fmgen/fmgen/opna.h"
+	"makofm.h"
+
+1610861487 d:\gal\aliceprogram\syseng 0.6 beta\src\fm\makofm.h
+	<stdint.h>
+
+1623219741 source:d:\gal\aliceprogram\syseng 0.6 beta\src\fm\makofm.cpp
+	"makofm.h"
+	<algorithm>
+	<assert.h>
+	<stdlib.h>
+	<string.h>
+	"../common.h"
+
+1625774303 source:d:\gal\aliceprogram\syseng 0.6 beta\src\resource.cpp
+	<windows.h>
+	"common.h"
+
+1623285386 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sdlmain.cpp
+	<string>
+	"common.h"
+	"config.h"
+	"fileio.h"
+	"sys/nact.h"
+	<direct.h>
+	<sys/stat.h>
+	<sys/types.h>
+	<emscripten.h>
+	<emscripten/html5.h>
+
+1623307517 d:\gal\aliceprogram\syseng 0.6 beta\src\sys\nact.h
+	<string>
+	<stdio.h>
+	"../common.h"
+	"localization.h"
+
+1622984887 d:\gal\aliceprogram\syseng 0.6 beta\src\sys\localization.h
+
+1625776576 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\ags.cpp
+	"ags.h"
+	<string>
+	"crc32.h"
+	"../config.h"
+	"../fileio.h"
+	<cmath>
+
+1623300396 d:\gal\aliceprogram\syseng 0.6 beta\src\sys\ags.h
+	<stdio.h>
+	"../common.h"
+	"nact.h"
+	<SDL_ttf.h>
+	<map>
+
+1623307708 d:\gal\aliceprogram\syseng 0.6 beta\src\sys\crc32.h
+
+1591233879 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\ags_bmp.cpp
+	"ags.h"
+	"../fileio.h"
+
+1610857452 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\ags_cursor.cpp
+	"ags.h"
+	<string.h>
+
+1623283954 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\ags_draw.cpp
+	"ags.h"
+	<tuple>
+	<utility>
+	<vector>
+	<string.h>
+	"dri.h"
+	"crc32.h"
+
+1591233879 d:\gal\aliceprogram\syseng 0.6 beta\src\sys\dri.h
+	"../common.h"
+
+1610857507 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\ags_gl3.cpp
+	"ags.h"
+	<string.h>
+
+1610857513 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\ags_gm3.cpp
+	"ags.h"
+	<string.h>
+
+1623283975 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\ags_pms.cpp
+	"ags.h"
+	"crc32.h"
+	<string.h>
+
+1623300509 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\ags_text.cpp
+	<string.h>
+	"ags.h"
+	"../utfsjis.h"
+	"../texthook.h"
+
+1589092898 d:\gal\aliceprogram\syseng 0.6 beta\src\utfsjis.h
+	"common.h"
+
+1589092898 d:\gal\aliceprogram\syseng 0.6 beta\src\texthook.h
+
+1610857532 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\ags_vsp.cpp
+	"ags.h"
+	"crc32.h"
+	<string.h>
+
+1610857534 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\ags_vsp2l.cpp
+	"ags.h"
+	<string.h>
+
+1610857543 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\ags_window.cpp
+	"ags.h"
+	<string.h>
+
+1623284222 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\dri.cpp
+	"dri.h"
+	<string.h>
+	"crc32.h"
+	"../fileio.h"
+
+1622984887 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\localization.cpp
+	"localization.h"
+
+1623220240 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\mako_midi.cpp
+	"mako_midi.h"
+	"nact.h"
+	"dri.h"
+	"crc32.h"
+
+1591233879 d:\gal\aliceprogram\syseng 0.6 beta\src\sys\mako_midi.h
+	<vector>
+	"../common.h"
+
+1623220285 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\msgskip.cpp
+	"msgskip.h"
+	<string.h>
+	"nact.h"
+	"../fileio.h"
+
+1623220296 d:\gal\aliceprogram\syseng 0.6 beta\src\sys\msgskip.h
+	"../common.h"
+
+1623307073 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\nact.cpp
+	<cstring>
+	<stdarg.h>
+	"nact.h"
+	"ags.h"
+	"mako.h"
+	"msgskip.h"
+	"dri.h"
+	"../config.h"
+	"../fileio.h"
+	"crc32.h"
+
+1623284232 d:\gal\aliceprogram\syseng 0.6 beta\src\sys\mako.h
+	<vector>
+	<stdio.h>
+	<limits.h>
+	<math.h>
+	"../common.h"
+	"nact.h"
+
+1623283483 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\nact_crc32.cpp
+	"nact.h"
+	<string.h>
+	"crc32.h"
+	"../fileio.h"
+
+1623220709 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\nact_input.cpp
+	<windows.h>
+	<SDL_syswm.h>
+	"nact.h"
+	"ags.h"
+	"../texthook.h"
+
+1623307137 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\nact_sys1.cpp
+	"nact.h"
+	"ags.h"
+	"mako.h"
+	"msgskip.h"
+	"crc32.h"
+	"../fileio.h"
+	"../texthook.h"
+
+1623307899 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\nact_sys2.cpp
+	<string>
+	"nact.h"
+	"ags.h"
+	"mako.h"
+	"msgskip.h"
+	"crc32.h"
+	"../fileio.h"
+	"../texthook.h"
+
+1623307950 source:d:\gal\aliceprogram\syseng 0.6 beta\src\sys\nact_sys3.cpp
+	<time.h>
+	<sys/stat.h>
+	"nact.h"
+	"ags.h"
+	"mako.h"
+	"msgskip.h"
+	"crc32.h"
+	"../fileio.h"
+	"../texthook.h"
+
+1589092898 source:d:\gal\aliceprogram\syseng 0.6 beta\src\texthook.cpp
+	<stdio.h>
+	"texthook.h"
+	<emscripten.h>
+
+1589092898 source:d:\gal\aliceprogram\syseng 0.6 beta\src\utfsjis.cpp
+	<stdlib.h>
+	<string.h>
+	"utfsjis.h"
+	"s2utbl.h"
+
+1589092898 d:\gal\aliceprogram\syseng 0.6 beta\src\s2utbl.h
+
+1623285302 source:d:\gal\aliceprogram\syseng 0.6 beta\src\win\mako.cpp
+	<windows.h>
+	<memory>
+	<string>
+	<SDL.h>
+	<SDL_syswm.h>
+	"../sys/mako.h"
+	"../sys/mako_midi.h"
+	"../fm/mako_fmgen.h"
+	"../config.h"
+	"../sys/dri.h"
+	"../sys/crc32.h"
+
+1623221425 source:d:\gal\aliceprogram\syseng 0.6 beta\src\win\nact_win.cpp
+	<windows.h>
+	<windowsx.h>
+	<time.h>
+	"../sys/nact.h"
+	"SDL_syswm.h"
+	"../sys/ags.h"
+	"../sys/mako.h"
+	"../sys/msgskip.h"
+	"../win/resource.h"
+
+1623285326 d:\gal\aliceprogram\syseng 0.6 beta\src\win\resource.h
+
+1623221465 source:d:\gal\aliceprogram\syseng 0.6 beta\src\win\resource.rc
+	"resource.h"
+	"afxres.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_joystick.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_metal.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_shape.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"SDL_locale.h"
+	"SDL_misc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<wchar.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	<sal.h>
+	"begin_code.h"
+	"close_code.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+	<sdkddkver.h>
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\begin_code.h
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\close_code.h
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<sys/cpuinline.h>
+	<mbarrier.h>
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	<process.h>
+	<stdlib.h>
+	"close_code.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<arm_neon.h>
+	<armintr.h>
+	<arm_neon.h>
+	<arm64intr.h>
+	<arm64_neon.h>
+	<mm3dnow.h>
+	<immintrin.h>
+	<mmintrin.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	<pmmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"SDL_endian.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_sensor.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_sensor.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_metal.h
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_shape.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572889 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_locale.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1608572888 d:\users\downloads\codeblocks17.12\codeblocks 17.12\mingw\x86_64-w64-mingw32\include\sdl2\sdl_misc.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
