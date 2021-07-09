@@ -46,13 +46,13 @@ typedef int32_t int32;
 #define sscanf_s sscanf
 #define sprintf_s snprintf
 
-
+/*
 inline void strcpy_s(char* dst, size_t n, const char* src)
 {
 	strncpy(dst, src, n);
 	dst[n - 1] = '\0';
 }
-
+*/
 
 #endif
 
@@ -62,13 +62,13 @@ inline void strcpy_s(char* dst, size_t n, const char* src)
 #define sscanf_s sscanf
 #define sprintf_s snprintf
 
-
+/*
 inline void strcpy_s(char* dst, size_t n, const char* src)
 {
 	strncpy(dst, src, n);
 	dst[n - 1] = '\0';
 }
-
+*/
 
 #endif // !WIN32
 
