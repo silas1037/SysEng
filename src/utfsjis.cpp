@@ -3,7 +3,7 @@
 #include "utfsjis.h"
 
 namespace {
-#include "s2utbl.h"
+#include "s2utbl_gbk.h"
 
 int unicode_to_sjis(int u) {
 	for (int b1 = 0x80; b1 <= 0xff; b1++) {
@@ -21,8 +21,8 @@ int unicode_to_sjis(int u) {
 
 uint16 sjis_to_unicode(uint16 code)
 {
-	if (code >= 0xa0 && code <= 0xdf)
-		return 0xff60 + code - 0xa0;
+	//if (code >= 0xa0 && code <= 0xdf)
+	//	return 0xff60 + code - 0xa0;
 	if (code < 0x100)
 		return code;
 	return s2u[(code >> 8) - 0x80][(code & 0xff) - 0x40];

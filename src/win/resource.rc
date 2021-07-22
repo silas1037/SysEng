@@ -94,7 +94,7 @@ IDI_ICON1               ICON    DISCARDABLE     "icon1.ico"
 //
 // FONTS
 //
-MTLc3m.ttf  FONTS  DISCARDABLE  "../../resources/fonts/MTLc3m.ttf"
+SourceHanSansCN-Normal.otf  FONTS  DISCARDABLE  "../../resources/fonts/SourceHanSansCN-Normal.otf"
 
 /////////////////////////////////////////////////////////////////////////////
 //

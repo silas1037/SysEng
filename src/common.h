@@ -23,7 +23,7 @@
 #define EMSCRIPTEN_KEEPALIVE
 #endif
 
-#define FONT_RESOURCE_NAME "MTLc3m.ttf"
+#define FONT_RESOURCE_NAME "SourceHanSansCN-Normal.otf"
 
 // type definition
 typedef uint8_t uint8;
@@ -73,11 +73,11 @@ inline void strcpy_s(char* dst, size_t n, const char* src)
 #endif // !WIN32
 
 static inline bool is_1byte_message(uint8_t c) {
-	return c == ' ' || (0xa1 <= c && c <= 0xdd);
+	return c == ' '; // || (0xa1 <= c && c <= 0xdd);
 }
 
 static inline bool is_2byte_message(uint8_t c) {
-	return (0x81 <= c && c <= 0x9f) || 0xe0 <= c;
+	return (0x81 <= c && c <= 0xfe) || 0xe0 <= c;
 }
 
 // resource.cpp
