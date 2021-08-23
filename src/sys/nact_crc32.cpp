@@ -60,7 +60,7 @@ const struct CRCTable {
 	{"onlyyou_demo", 3, "Only You −世紀末のジュリエット達− デモ版", CRC32_ONLYYOU_DEMO},
 	{"prog_cd", 3, "Prostudent G", CRC32_PROSTUDENTG_CD},
 	{"prog_omake", 3, "Prostudent G おまけ", CRC32_PROG_OMAKE},
-	{"rance41", 3, "兰斯 4.1 ～拯救药厂！～", CRC32_RANCE41},
+	{"rance41", 3, "兰斯 4.1 ～拯救制药厂！～", CRC32_RANCE41},
 	{"rance41_eng", 3, "Rance 4.1 ~Save the Medicine Plant!~", CRC32_RANCE41_ENG},
 	{"rance42", 3, "兰斯 4.2 ～天使组～", CRC32_RANCE42},
 	{"rance42_eng", 3, "Rance 4.2 ~Angel Army~", CRC32_RANCE42_ENG},
