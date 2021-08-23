@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 	const char* title = nact->get_title();
 	if (title) {
 		char buf[128];
-		sprintf_s(buf, 128, "Scenario Decoder SYSTEM%d: %s", nact->sys_ver, title);
+		sprintf_s(buf, 128, "【卡拉保护协会】 %s", title);
 #ifdef __EMSCRIPTEN__
 		EM_ASM_ARGS({ xsystem35.shell.setWindowTitle(UTF8ToString($0)); }, buf);
 #else
