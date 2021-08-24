@@ -23,7 +23,7 @@
 #define EMSCRIPTEN_KEEPALIVE
 #endif
 
-#define FONT_RESOURCE_NAME "SourceHanSansCN-Normal.otf"
+#define FONT_RESOURCE_NAME "simhei.ttf"
 
 // type definition
 typedef uint8_t uint8;
