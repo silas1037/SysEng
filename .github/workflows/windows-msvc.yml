@@ -6,12 +6,10 @@ jobs:
     runs-on: windows-2019
     strategy:
       matrix:
-        arch: ["Win32", "x64"]
+        arch: ["Win32"]
         include:
           - arch: "Win32"
             package: "system3-sdl2-32bit"
-          - arch: "x64"
-            package: "system3-sdl2-64bit"
     name: MSVS ${{ matrix.arch }}
     steps:
 
