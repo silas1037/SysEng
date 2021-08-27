@@ -86,10 +86,12 @@ void AGS::draw_text(const char* string, bool text_wait)
 		}
 
 		// 文字出力
-		if((0xeb9f <= code && code <= 0xebfc) || (0xec40 <= code && code <= 0xec9e)) {
+		/*if((0xeb9f <= code && code <= 0xebfc) || (0xec40 <= code && code <= 0xec9e)) {
 			// Use unadjusted dest_y here.
 			draw_gaiji(screen, dest_x, draw_menu ? menu_dest_y : text_dest_y, code, font_size, font_color);
 			dest_x += font_size;
+			*/
+		if(0){
 		} else {
 			int unicode = sjis_to_unicode(code);
 			if (!draw_menu)
