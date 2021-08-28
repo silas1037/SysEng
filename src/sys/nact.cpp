@@ -487,7 +487,7 @@ void NACT::wait_after_open_menu()
 {
 	// 連打による誤クリック防止
 	Uint32 dwTime = SDL_GetTicks();
-	Uint32 dwWait = dwTime + 400;
+	Uint32 dwWait = dwTime + 100;
 
 	while(dwTime < dwWait) {
 		if(terminate) {
