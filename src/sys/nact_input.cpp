@@ -28,6 +28,14 @@ void NACT::pump_events()
 			terminate = true;
 			break;
 
+		case SDL_WINDOWEVENT:
+			switch (e.window.event) {
+			case SDL_WINDOWEVENT_SIZE_CHANGED:
+				ags->flush_screen(false);
+				break;
+			}
+			break;
+
 		case SDL_MOUSEMOTION:
 			mousex = e.motion.x;
 			mousey = e.motion.y;
@@ -105,6 +113,6 @@ void NACT::get_cursor(int* x, int* y)
 
 void NACT::set_cursor(int x, int y)
 {
+	ags->translate_mouse_coords(&x, &y);
 	SDL_WarpMouseInWindow(g_window, x, y);
 }
-
