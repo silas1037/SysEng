@@ -86,12 +86,10 @@ void AGS::draw_text(const char* string, bool text_wait)
 		}
 
 		// 文字出力
-		if((0xff40 <= code && code <= 0xff9d) || (0xff9e <= code && code <= 0xfffc)) {
+		if((0xff40 <= code && code <= 0xfffd)) {
 			// Use unadjusted dest_y here.
 			draw_gaiji(screen, dest_x, draw_menu ? menu_dest_y : text_dest_y, code, font_size, font_color);
 			dest_x += font_size;
-			
-		//if(0){
 		} else {
 			int unicode = sjis_to_unicode(code);
 			if (!draw_menu)
@@ -199,7 +197,8 @@ void AGS::draw_char_antialias(int dest, int dest_x, int dest_y, uint16 code, TTF
 
 void AGS::draw_gaiji(int dest, int dest_x, int dest_y, uint16 code, int size, uint8 color)
 {
-	int index = (0xff40 <= code && code <= 0xff9d) ? code - 0xff40 : (0xff9e <= code && code <= 0xfffc) ? code - 0xff9e + 94 : 0;
+	//int index = (0xff40 <= code && code <= 0xff9d) ? code - 0xff40 : (0xff9e <= code && code <= 0xfffc) ? code - 0xff9e + 94 : 0;
+	int index = (0xff40 <= code && code <= 0xff5b) ? code - 0xff40 : (0xff5d <= code && code <= 0xff9e) ? code - 0xff40 - 1 : (0xff9f <= code && code <= 0xfffd) ? code - 0xff9f + 94 : 0;
 	bool pattern[16][16];
 
 	// パターン取得
