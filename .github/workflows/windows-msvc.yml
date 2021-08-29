@@ -28,8 +28,20 @@ jobs:
         cmake --build . --config Release
         cmake --install . --prefix artifacts
 
-    - name: Upload
-      uses: actions/upload-artifact@v2
+    #- name: Upload
+    #  uses: actions/upload-artifact@v2
+    #  with:
+    #    name: ${{ matrix.package }}
+    #    path: out/artifacts
+    
+    - name: runme
+      run: |
+        7z a system3-sdl2.7z out/artifacts
+    - uses: "marvinpinto/action-automatic-releases@latest"
       with:
-        name: ${{ matrix.package }}
-        path: out/artifacts
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "v0.90.0"
+        prerelease: true
+        title: "Windows Debugger"
+        files: |
+          system3-sdl2.7z
