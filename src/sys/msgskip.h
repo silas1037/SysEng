@@ -1,7 +1,7 @@
 #ifndef _MSGSKIP_H_
 #define _MSGSKIP_H_
 
-#include "../common.h"
+#include "common.h"
 
 class NACT;
 

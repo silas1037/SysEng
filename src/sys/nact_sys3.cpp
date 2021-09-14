@@ -12,7 +12,8 @@
 #include "msgskip.h"
 #include "crc32.h"
 #include "../fileio.h"
-#include "../texthook.h"
+#include "encoding.h"
+#include "texthook.h"
 
 NACT_Sys3::NACT_Sys3(uint32 crc32_a, uint32 crc32_b, const Config& config)
 	: NACT(3, crc32_a, crc32_b, config)
@@ -185,7 +186,7 @@ void NACT_Sys3::cmd_open_verb()
 
 	// 表示する動詞のチェック
 	int chk[MAX_VERB], page = 0;
-
+	
 	memset(chk, 0, sizeof(chk));
 	for(int i = 0; i < menu_index; i++) {
 		chk[menu_verb[i]] = 1;
@@ -228,7 +229,7 @@ void NACT_Sys3::cmd_open_obj(int verb)
 
 	// 表示する目的語のチェック
 	int chk[MAX_OBJ], addr[MAX_OBJ], page = 0;
-
+	
 	memset(chk, 0, sizeof(chk));
 	for(int i = 0; i < menu_index; i++) {
 		if(menu_verb[i] == verb) {
@@ -264,7 +265,7 @@ void NACT_Sys3::cmd_open_obj(int verb)
 	// 戻るを追加
 	ags->menu_dest_x = 2;
 	ags->menu_dest_y += 2;
-	ags->draw_text(strings::back[lang]);
+	ags->draw_text(strings.back);
 	id[index++] = 0;
 	ags->menu_dest_y += ags->menu_font_maxsize + 2;
 	ags->draw_menu = false;
@@ -747,28 +748,18 @@ void NACT_Sys3::cmd_l()
 void NACT_Sys3::cmd_m()
 {
 	char string[22];
-	int p = 0;
 
 	int d = getd();
 	if (d == '\'' || d == '"') {  // SysEng
-		int terminator = d;
-		while ((d = getd()) != terminator) {
-			if (d == '\\')
-				d = getd();
-			string[p++] = d;
-		}
+		get_string(string, sizeof(string), d);
 	} else {
+		int p = 0;
 		while(d != ':') {
-			if(is_2byte_message(d)) {
-				string[p++] = d;
-				string[p++] = getd();
-			} else {
-				string[p++] = d;
-			}
+			string[p++] = d;
 			d = getd();
 		}
+		string[p] = '\0';
 	}
-	string[p] = '\0';
 
 	output_console("\nM %s:", string);
 
@@ -1380,21 +1371,13 @@ void NACT_Sys3::cmd_y()
 		case 228:
 		case 229:
 			{
-				char string[21];
-				int s = 0, d = 0;
-				for(int i = 0; i < cmd - 220; i++) {
-					if(tvar[param - 1][s] == '\0') {
-						string[d++] = 0x20;
-					} else {
-						uint8 code = tvar[param - 1][s++];
-						string[d++] = code;
-						if(is_2byte_message(code)) {
-							string[d++] = tvar[param - 1][s++];
-						}
-					}
+				ags->draw_text(tvar[param - 1]);
+				int padlen = cmd - 220 - encoding->mbslen(tvar[param - 1]);
+				if (padlen > 0) {
+					char pad[10] = "         ";
+					pad[padlen] = '\0';
+					ags->draw_text(pad);
 				}
-				string[d] = '\0';
-				ags->draw_text(string);
 			}
 			break;
 		case 230:

@@ -13,7 +13,8 @@
 #include "msgskip.h"
 #include "crc32.h"
 #include "../fileio.h"
-#include "../texthook.h"
+#include "encoding.h"
+#include "texthook.h"
 
 #define WAIT(tm) \
 { \
@@ -128,9 +129,9 @@ void NACT_Sys2::cmd_branch()
 				getd();
 				getw();
 			} else if(cmd == ']') {
-
+				
 			} else if(cmd == 'A') {
-
+				
 			} else if(cmd == 'B') {
 				cali();
 				cali();
@@ -153,7 +154,7 @@ void NACT_Sys2::cmd_branch()
 				cali();
 				cali();
 			} else if(cmd == 'F') {
-
+				
 			} else if(cmd == 'G') {
 				cali();
 			} else if(cmd == 'H') {
@@ -168,22 +169,16 @@ void NACT_Sys2::cmd_branch()
 				cali();
 				cali();
 			} else if(cmd == 'K') {
-
+				
 			} else if(cmd == 'L') {
 				getd();
 			} else if(cmd == 'M') {
 				uint8 val = getd();
 				if (val == '\'' || val == '"') {  // SysEng
-					for (uint8_t c = getd(); c != val; c = getd()) {
-						if (c == '\\')
-							getd();
-					}
+					skip_string(val);
 				} else {
-					while (val != ':') {
-						if(is_2byte_message(val))
-							getd();
+					while (val != ':')
 						val = getd();
-					}
 				}
 			} else if(cmd == 'N') {
 				cali();
@@ -197,7 +192,7 @@ void NACT_Sys2::cmd_branch()
 			} else if(cmd == 'Q') {
 				getd();
 			} else if(cmd == 'R') {
-
+				
 			} else if(cmd == 'S') {
 				getd();
 			} else if(cmd == 'T') {
@@ -260,23 +255,15 @@ void NACT_Sys2::cmd_branch()
 			} else if(cmd == 'Z') {
 				cali();
 				cali();
-			} else if(is_1byte_message(cmd)) {
-				// message (1 byte)
-			} else if(is_2byte_message(cmd)) {
-				// message (2 bytes)
-				getd();
 			} else if (cmd == '\'' || cmd == '"') {  // SysEng
-				for (uint8_t c = getd(); c != cmd; c = getd()) {
-					if (c == '\\')
-						getd();
-				}
+				skip_string(cmd);
+			} else if (is_message(cmd)) {
+				ungetd();
+				scenario_addr += encoding->mblen(scenario_data + scenario_addr);
+			} else if (cmd >= 0x20 && cmd < 0x7f) {
+				fatal("Unknown Command: '%c' at page = %d, addr = %d", cmd, scenario_page, prev_addr);
 			} else {
-				if(cmd >= 0x20 && cmd < 0x7f) {
-					fatal("Unknown Command: '%c' at page = %d, addr = %d", cmd, scenario_page, prev_addr);
-				} else {
-					fatal("Unknown Command: %02x at page = %d, addr = %d", cmd, scenario_page, prev_addr);
-				}
-				break;
+				fatal("Unknown Command: %02x at page = %d, addr = %d", cmd, scenario_page, prev_addr);
 			}
 		}
 	}
@@ -425,7 +412,7 @@ void NACT_Sys2::cmd_open_verb()
 
 	// 表示する動詞のチェック
 	int chk[MAX_VERB], page = 0;
-
+	
 	memset(chk, 0, sizeof(chk));
 	for(int i = 0; i < menu_index; i++) {
 		chk[menu_verb[i]] = 1;
@@ -468,7 +455,7 @@ void NACT_Sys2::cmd_open_obj(int verb)
 
 	// 表示する目的語のチェック
 	int chk[MAX_OBJ], addr[MAX_OBJ], page = 0;
-
+	
 	memset(chk, 0, sizeof(chk));
 	for(int i = 0; i < menu_index; i++) {
 		if(menu_verb[i] == verb) {
@@ -504,7 +491,7 @@ void NACT_Sys2::cmd_open_obj(int verb)
 	// 戻るを追加
 	ags->menu_dest_x = 2;
 	ags->menu_dest_y += 2;
-	ags->draw_text(strings::back[lang]);
+	ags->draw_text(strings.back);
 	id[index++] = 0;
 	ags->menu_dest_y += ags->menu_font_maxsize + 2;
 	ags->draw_menu = false;
@@ -543,7 +530,7 @@ void NACT_Sys2::cmd_a()
 		}
 		sys_sleep(16);
 	}
-	sys_sleep(30);//100);
+	sys_sleep(30); //100);
 	while (!msgskip->skipping()) {
 		if(terminate) {
 			return;
@@ -896,28 +883,18 @@ void NACT_Sys2::cmd_l()
 void NACT_Sys2::cmd_m()
 {
 	char string[33];
-	int p = 0;
 
 	int d = getd();
 	if (d == '\'' || d == '"') {  // SysEng
-		int terminator = d;
-		while ((d = getd()) != terminator) {
-			if (d == '\\')
-				d = getd();
-			string[p++] = d;
-		}
+		get_string(string, sizeof(string), d);
 	} else {
+		int p = 0;
 		while(d != ':') {
-			if(is_2byte_message(d)) {
-				string[p++] = d;
-				string[p++] = getd();
-			} else {
-				string[p++] = d;
-			}
+			string[p++] = d;
 			d = getd();
 		}
+		string[p] = '\0';
 	}
-	string[p] = '\0';
 
 	output_console("\nM %s:", string);
 
@@ -943,7 +920,7 @@ void NACT_Sys2::cmd_o()
 	output_console("\nO %d,%d,%d:", st, width, height);
 
 #if 0
-	// white mesh
+	// white mesh used by SDPS
 	int sx = (st % 80) * 8;
 	int sy = (int)(st / 80);
 	ags->draw_mesh(sx, sy, width, height);
@@ -1358,23 +1335,13 @@ void NACT_Sys2::cmd_y()
 		case 228:
 		case 229:
 			if(1 <= param && param <= 10) {
-				char string[22];
-				int len = cmd - 220, p = 0, q = 0;
-				uint8 d;
-				while((d = (uint8)tvar[param - 1][p]) != '\0') {
-					if(is_2byte_message(d)) {
-						string[p] = tvar[param - 1][p];
-						p++;
-					}
-					string[p] = tvar[param - 1][p];
-					p++;
-					q++;
+				ags->draw_text(tvar[param - 1]);
+				int padlen = cmd - 220 - encoding->mbslen(tvar[param - 1]);
+				if (padlen > 0) {
+					char pad[10] = "         ";
+					pad[padlen] = '\0';
+					ags->draw_text(pad);
 				}
-				for(int i = q; i < len; i++) {
-					string[p++] = 0x20;
-				}
-				string[p] = '\0';
-				ags->draw_text(string);
 			}
 			break;
 		case 240:

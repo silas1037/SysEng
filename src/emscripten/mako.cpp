@@ -6,8 +6,8 @@
 #include <memory>
 #include <emscripten.h>
 #include "mako.h"
-#include "../fm/mako_fmgen.h"
-#include "../sys/dri.h"
+#include "fm/mako_fmgen.h"
+#include "dri.h"
 
 namespace {
 

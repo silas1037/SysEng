@@ -8,8 +8,10 @@ struct Config {
 	std::string font_files[3];
 	std::string vwidth_font_files[3];
 	std::string game_id;
+	std::string encoding;
 	std::string save_dir;
 	std::string playlist;
+	std::string title;
 	bool use_fm = false;
 	bool no_antialias = false;
 

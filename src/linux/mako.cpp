@@ -8,11 +8,11 @@
 #include <SDL.h>
 #include <SDL_mixer.h>
 
-#include "../sys/mako.h"
-#include "../sys/mako_midi.h"
-#include "../fm/mako_fmgen.h"
+#include "mako.h"
+#include "mako_midi.h"
+#include "fm/mako_fmgen.h"
 #include "../config.h"
-#include "../sys/dri.h"
+#include "dri.h"
 
 // MIX_INIT_FLUIDSYNTH was renamed to MIX_INIT_MID in SDL_mixer 2.0.2
 #if (SDL_MIXER_MAJOR_VERSION == 2) && (SDL_MIXER_MINOR_VERSION == 0) && (SDL_MIXER_PATCHLEVEL < 2)

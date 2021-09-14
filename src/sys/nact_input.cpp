@@ -11,7 +11,7 @@
 #include <SDL_syswm.h>
 #include "nact.h"
 #include "ags.h"
-#include "../texthook.h"
+#include "texthook.h"
 
 extern SDL_Window* g_window;
 static int mousex, mousey, fingers;
@@ -26,6 +26,15 @@ void NACT::pump_events()
 		switch (e.type) {
 		case SDL_QUIT:
 			terminate = true;
+			break;
+
+		case SDL_WINDOWEVENT:
+			switch (e.window.event) {
+			case SDL_WINDOWEVENT_EXPOSED:
+			case SDL_WINDOWEVENT_SIZE_CHANGED:
+				ags->flush_screen(false);
+				break;
+			}
 			break;
 
 		case SDL_MOUSEMOTION:
@@ -105,6 +114,6 @@ void NACT::get_cursor(int* x, int* y)
 
 void NACT::set_cursor(int x, int y)
 {
+	ags->translate_mouse_coords(&x, &y);
 	SDL_WarpMouseInWindow(g_window, x, y);
 }
-

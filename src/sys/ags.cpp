@@ -4,13 +4,13 @@
 	[ AGS ]
 */
 
+#include <cmath>
+
 #include "ags.h"
-#include <string>
+#include <string.h>
 #include "crc32.h"
 #include "../config.h"
 #include "../fileio.h"
-
-#include <cmath>
 
 extern SDL_Window* g_window;
 static SDL_Surface* display_surface;
@@ -94,30 +94,35 @@ AGS::AGS(NACT* parent, const Config& config) : nact(parent), dirty(false)
 		ags_setAntialiasedStringMode(0);
 
 	cur_menu_monospace_font = 0;
-	cur_menu_vwidth_font = 0;
+	cur_text_monospace_font = 0;
 
 	// Loading variable-width fonts.
 	for(int i = 0; i<3; i++) {
-        if (!config.vwidth_font_files[i].empty()) {
-            rw_vwidth_font[i] = open_file(config.vwidth_font_files[i].c_str());
-            if (!rw_vwidth_font[i])
-                parent->fatal("Cannot open variable-width font file %s", config.vwidth_font_files[i].c_str());
-        }
-        if (rw_vwidth_font[i]) {
-            hVWidthFont16[i] = TTF_OpenFontRW(rw_vwidth_font[i], 0, 16);
-            SDL_RWseek(rw_vwidth_font[i], 0, SEEK_SET);
-            hVWidthFont24[i] = TTF_OpenFontRW(rw_vwidth_font[i], 0, 24);
-            SDL_RWseek(rw_vwidth_font[i], 0, SEEK_SET);
-            hVWidthFont32[i] = TTF_OpenFontRW(rw_vwidth_font[i], 0, 32);
-            SDL_RWseek(rw_vwidth_font[i], 0, SEEK_SET);
-            hVWidthFont48[i] = TTF_OpenFontRW(rw_vwidth_font[i], 0, 48);
-            SDL_RWseek(rw_vwidth_font[i], 0, SEEK_SET);
-            hVWidthFont64[i] = TTF_OpenFontRW(rw_vwidth_font[i], 0, 64);
-            SDL_RWseek(rw_vwidth_font[i], 0, SEEK_SET);
-            if (!hVWidthFont16[i] || !hVWidthFont24[i] || !hVWidthFont32[i] || !hVWidthFont48[i] || !hVWidthFont64[i]) {
-                parent->fatal("TTF_OpenFontRW failed: %s", TTF_GetError());
-            }
-        }
+		if(!config.vwidth_font_files[i].empty()) {
+			rw_vwidth_font[i] = open_file(config.vwidth_font_files[i].c_str());
+			if(!rw_vwidth_font[i])
+				parent->fatal("Cannot open variable-width font file %s", config.vwidth_font_files[i].c_str());
+		}
+		else {
+			rw_vwidth_font[i] = open_resource(FONT_RESOURCE_NAME, "fonts");
+			if(!rw_vwidth_font[i])
+				parent->fatal("Cannot open variable-width font file or default monospace font.");
+		}
+		if(rw_vwidth_font[i]) {
+			hVWidthFont16[i] = TTF_OpenFontRW(rw_vwidth_font[i], 0, 16);
+			SDL_RWseek(rw_vwidth_font[i], 0, SEEK_SET);
+			hVWidthFont24[i] = TTF_OpenFontRW(rw_vwidth_font[i], 0, 24);
+			SDL_RWseek(rw_vwidth_font[i], 0, SEEK_SET);
+			hVWidthFont32[i] = TTF_OpenFontRW(rw_vwidth_font[i], 0, 32);
+			SDL_RWseek(rw_vwidth_font[i], 0, SEEK_SET);
+			hVWidthFont48[i] = TTF_OpenFontRW(rw_vwidth_font[i], 0, 48);
+			SDL_RWseek(rw_vwidth_font[i], 0, SEEK_SET);
+			hVWidthFont64[i] = TTF_OpenFontRW(rw_vwidth_font[i], 0, 64);
+			SDL_RWseek(rw_vwidth_font[i], 0, SEEK_SET);
+			if(!hVWidthFont16[i] || !hVWidthFont24[i] || !hVWidthFont32[i] || !hVWidthFont48[i] || !hVWidthFont64[i]) {
+				parent->fatal("TTF_OpenFontRW failed: %s", TTF_GetError());
+			}
+		}
 	}
 	cur_menu_vwidth_font = 0;
 	cur_text_vwidth_font = 0;

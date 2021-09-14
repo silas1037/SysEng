@@ -10,12 +10,12 @@
 #include <string>
 #include <SDL.h>
 #include <SDL_syswm.h>
-#include "../sys/mako.h"
-#include "../sys/mako_midi.h"
-#include "../fm/mako_fmgen.h"
+#include "mako.h"
+#include "mako_midi.h"
+#include "fm/mako_fmgen.h"
 #include "../config.h"
-#include "../sys/dri.h"
-#include "../sys/crc32.h"
+#include "dri.h"
+#include "crc32.h"
 
 extern SDL_Window* g_window;
 

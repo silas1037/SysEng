@@ -1,6 +1,3 @@
-#ifndef HEADER_79D70C0B4318C87F
-#define HEADER_79D70C0B4318C87F
-
 /*
 	ALICE SOFT SYSTEM 3 for Win32
 
@@ -66,7 +63,7 @@
 #define CRC32_RANCE41		0xa43fb4b6	// Rance 4.1
 #define CRC32_RANCE41_ENG	0x811f4ff3	// Rance 4.1 (English) 1.5 Beta
 #define CRC32_RANCE42		0x04d24d1e	// Rance 4.2
-#define CRC32_RANCE42_ENG	0xa97cc370	// Rance 4.1 (English) 1.5 Beta
+#define CRC32_RANCE42_ENG	0xa97cc370	// Rance 4.2 (English) 1.5 Beta
 #define CRC32_AYUMI_CD		0xd2bed9ee	// あゆみちゃん物語 (CD)
 #define CRC32_AYUMI_JISSHA_256	0x00d15a2b	// あゆみちゃん物語 実写版
 #define CRC32_AYUMI_JISSHA_FULL	0x5f66ff1d	// あゆみちゃん物語 フルカラー実写版
@@ -80,5 +77,3 @@
 #define CRC32_MUGENHOUYOU	0xbb27d1ba	// 夢幻泡影
 
 #endif
-#endif // header guard
-

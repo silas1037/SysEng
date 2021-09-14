@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../sys/nact.h"
+#include "nact.h"
 
 void NACT::text_dialog()
 {

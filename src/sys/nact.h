@@ -1,6 +1,3 @@
-#ifndef HEADER_51264299703E45A
-#define HEADER_51264299703E45A
-
 /*
 	ALICE SOFT SYSTEM 3 for Win32
 
@@ -10,6 +7,7 @@
 #ifndef _NACT_H_
 #define _NACT_H_
 
+#include <memory>
 #include <string>
 #include <stdio.h>
 #include "../common.h"
@@ -85,6 +83,7 @@
 class AGS;
 class MAKO;
 class MsgSkip;
+class Encoding;
 struct Config;
 
 class NACT
@@ -216,6 +215,9 @@ protected:
 		return val;
 	}
 	void ungetd() { scenario_addr--; }
+	bool is_message(uint8_t c) { return c == ' ' || c & 0x80; }
+	void skip_string(uint8 terminator);
+	void get_string(char* buf, int size, uint8 terminator);
 
 	uint16 random(uint16 range);
 	uint32 seed;
@@ -260,6 +262,7 @@ public:
 	static const int get_sys_ver(uint32 crc32_a, uint32 crc32_b);
 	const char* get_title();
 	Language get_language();
+	const char* get_encoding_name();
 	void text_wait();
 	void set_skip_menu_state(bool enabled, bool checked);
 
@@ -267,7 +270,9 @@ public:
 	int sys_ver;
 	uint32 crc32_a;		// ADISK
 	uint32 crc32_b;		// BDISK for D.P.S -SG- and Super D.P.S
-	Language lang;
+	const Config& config;
+	std::unique_ptr<Encoding> encoding;
+	Strings strings;
 
 	// for Y27
 	char tvar[10][33];
@@ -427,5 +432,3 @@ protected:
 };
 
 #endif // _NACT_H_
-#endif // header guard 
-

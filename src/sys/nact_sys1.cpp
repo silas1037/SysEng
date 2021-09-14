@@ -17,7 +17,8 @@
 #include "msgskip.h"
 #include "crc32.h"
 #include "../fileio.h"
-#include "../texthook.h"
+#include "encoding.h"
+#include "texthook.h"
 
 // メニューの改ページ
 // #define MENU_MAX (crc32_a == CRC32_INTRUDER ? 6 : 11)
@@ -75,7 +76,7 @@ NACT_Sys1::NACT_Sys1(uint32 crc32_a, uint32 crc32_b, const Config& config)
 	case CRC32_DPS_SG3:
 		text_refresh = false;
 		for (int i = 0; i < 7; i++)
-			strcpy(tvar[i], strings::dps_initial_tvars[lang][i]);
+			strcpy(tvar[i], strings.dps_initial_tvars[i]);
 		break;
 	case CRC32_INTRUDER:
 		paint_x = paint_y = map_page = 0;
@@ -174,11 +175,11 @@ void NACT_Sys1::cmd_branch()
 				getd();
 				getw();
 			} else if(cmd == ']') {
-
+				
 			} else if(cmd == 'A') {
-
+				
 			} else if(cmd == 'F') {
-
+				
 			} else if(cmd == 'G') {
 				getd();
 			} else if(cmd == 'L') {
@@ -188,7 +189,7 @@ void NACT_Sys1::cmd_branch()
 			} else if(cmd == 'Q') {
 				getd();
 			} else if(cmd == 'R') {
-
+				
 			} else if(cmd == 'S') {
 				getd();
 			} else if(cmd == 'U') {
@@ -202,23 +203,15 @@ void NACT_Sys1::cmd_branch()
 			} else if(cmd == 'Z') {
 				cali();
 				cali();
-			} else if(is_1byte_message(cmd)) {
-				// message (1 byte)
-			} else if(is_2byte_message(cmd)) {
-				// message (2 bytes)
-				getd();
 			} else if (cmd == '\'' || cmd == '"') {  // SysEng
-				for (uint8_t c = getd(); c != cmd; c = getd()) {
-					if (c == '\\')
-						getd();
-				}
+				skip_string(cmd);
+			} else if (is_message(cmd)) {
+				ungetd();
+				scenario_addr += encoding->mblen(scenario_data + scenario_addr);
+			} else if (cmd >= 0x20 && cmd < 0x7f) {
+				fatal("Unknown Command: '%c' at page = %d, addr = %d", cmd, scenario_page, prev_addr);
 			} else {
-				if(cmd >= 0x20 && cmd < 0x7f) {
-					fatal("Unknown Command: '%c' at page = %d, addr = %d", cmd, scenario_page, prev_addr);
-				} else {
-					fatal("Unknown Command: %02x at page = %d, addr = %d", cmd, scenario_page, prev_addr);
-				}
-				break;
+				fatal("Unknown Command: %02x at page = %d, addr = %d", cmd, scenario_page, prev_addr);
 			}
 		}
 	}
@@ -373,7 +366,7 @@ void NACT_Sys1::cmd_open_verb()
 
 	// 表示する動詞のチェック
 	int chk[MAX_VERB], page = 0, cnt = 0;
-
+	
 	memset(chk, 0, sizeof(chk));
 	for(int i = 0; i < menu_index; i++) {
 		chk[menu_verb[i]] = 1;
@@ -426,7 +419,7 @@ top2:
 		// 次のページを追加
 		ags->menu_dest_x = 2;
 		ags->menu_dest_y += 2;
-		ags->draw_text(strings::next_page[lang]);
+		ags->draw_text(strings.next_page);
 		id[index++] = -1;
 		ags->menu_dest_y += ags->menu_font_maxsize + 2;
 	}
@@ -453,7 +446,7 @@ void NACT_Sys1::cmd_open_obj(int verb)
 
 	// 表示する目的語のチェック
 	int chk[MAX_OBJ], addr[MAX_OBJ], page = 0, cnt = 0;
-
+	
 	memset(chk, 0, sizeof(chk));
 	for(int i = 0; i < menu_index; i++) {
 		if(menu_verb[i] == verb) {
@@ -497,7 +490,7 @@ top:
 		// 戻るを追加
 		ags->menu_dest_x = 2;
 		ags->menu_dest_y += 2;
-		ags->draw_text(strings::back[lang]);
+		ags->draw_text(strings.back);
 		id[index++] = 0;
 		ags->menu_dest_y += ags->menu_font_maxsize + 2;
 	} else {
@@ -523,14 +516,14 @@ top2:
 		// 戻るを追加
 		ags->menu_dest_x = 2;
 		ags->menu_dest_y += 2;
-		ags->draw_text(strings::back[lang]);
+		ags->draw_text(strings.back);
 		id[index++] = 0;
 		ags->menu_dest_y += ags->menu_font_maxsize + 2;
 
 		// 次のページを追加
 		ags->menu_dest_x = 2;
 		ags->menu_dest_y += 2;
-		ags->draw_text(strings::next_page[lang]);
+		ags->draw_text(strings.next_page);
 		id[index++] = -1;
 		ags->menu_dest_y += ags->menu_font_maxsize + 2;
 	}
@@ -1215,7 +1208,6 @@ void NACT_Sys1::cmd_y()
 					ags->draw_box(param);
 				}
 				break;
-			// Adding this because it's an ASCII text necessity.
 			case 240:
 				ags->draw_hankaku = (param == 1) ? true : false;
 				break;

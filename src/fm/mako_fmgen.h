@@ -1,7 +1,7 @@
 #ifndef MAKOFMGEN_H_
 #define MAKOFMGEN_H_
 
-#include "../../fmgen/fmgen/opna.h"
+#include "fmgen/opna.h"
 #include "makofm.h"
 
 class MakoFMgen : private MakoFM {

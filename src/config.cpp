@@ -1,16 +1,14 @@
 #include "config.h"
 
 #include "common.h"
+#include <tuple>
+#include <utility>
 #include <stdio.h>
 #include <string.h>
 #ifdef _WIN32
 #include <direct.h>
 #else
 #include <unistd.h>
-#endif
-
-#ifdef _MSC_VER
-#define strcasecmp _stricmp
 #endif
 
 #define INIFILENAME "system3.ini"
@@ -36,6 +34,25 @@ bool is_empty_line(const char *s)
 	return true;
 }
 
+char *trim(char *s)
+{
+	while (isspace(*s))
+		s++;
+	char *p = s + strlen(s) - 1;
+	while (p > s && isspace(*p))
+		*p-- = '\0';
+	return s;
+}
+
+std::pair<char*, char*> parse_keyval(char *line)
+{
+	char *eq = strchr(line, '=');
+	if (!eq)
+		return {nullptr, nullptr};
+	*eq = '\0';
+	return { trim(line), trim(eq + 1) };
+}
+
 }  // namespace
 
 Config::Config(int argc, char *argv[])
@@ -58,22 +75,26 @@ Config::Config(int argc, char *argv[])
 			save_dir = argv[++i];
 		else if (strcmp(argv[i], "-fontfile") == 0)
 			font_files[0] = argv[++i];
-		else if (strcmp(argv[i], "-fontfile1") == 0)
+		else if(strcmp(argv[i], "-fontfile1") == 0)
 			font_files[1] = argv[++i];
 		else if (strcmp(argv[i], "-fontfile2") == 0)
 			font_files[2] = argv[++i];
-        else if (strcmp(argv[i], "-vfontfile") == 0)
-            vwidth_font_files[0] = argv[++i];
-        else if (strcmp(argv[i], "-vfontfile1") == 0)
-            vwidth_font_files[1] = argv[++i];
-        else if (strcmp(argv[i], "-vfontfile2") == 0)
-            vwidth_font_files[2] = argv[++i];
+		else if (strcmp(argv[i], "-vfontfile") == 0)
+			vwidth_font_files[0] = argv[++i];
+		else if (strcmp(argv[i], "-vfontfile1") == 0)
+			vwidth_font_files[1] = argv[++i];
+		else if (strcmp(argv[i], "-vfontfile2") == 0)
+			vwidth_font_files[2] = argv[++i];
 		else if (strcmp(argv[i], "-playlist") == 0)
 			playlist = argv[++i];
 		else if (strcmp(argv[i], "-fm") == 0)
 			use_fm = true;
 		else if (strcmp(argv[i], "-game") == 0)
 			game_id = argv[++i];
+		else if (strcmp(argv[i], "-encoding") == 0)
+			encoding = argv[++i];
+		else if (strcmp(argv[i], "-title") == 0)
+			title = argv[++i];
 	}
 }
 
@@ -100,32 +121,41 @@ void Config::load_ini()
 				current_section = CONFIG;
 			else
 				WARNING(INIFILENAME ":%d Unknown section \"%s\"", lineno, val);
-		}
-		else if (current_section == CONFIG) {
-			if (sscanf(line, "noantialias = %s", val))
-				no_antialias = to_bool(val, lineno);
-			else if (sscanf(line, "savedir = %s", val))
-				save_dir = val;
-			else if (sscanf(line, "fontfile = %s", val))
-				font_files[0] = val;
-			else if (sscanf(line, "fontfile1 = %s", val))
-				font_files[1] = val;
-			else if (sscanf(line, "fontfile2 = %s", val))
-				font_files[2] = val;
-			else if (sscanf(line, "vfontfile = %s", val))
-				vwidth_font_files[0] = val;
-			else if (sscanf(line, "vfontfile1 = %s", val))
-				vwidth_font_files[1] = val;
-			else if (sscanf(line, "vfontfile2 = %s", val))
-				vwidth_font_files[2] = val;
-			else if (sscanf(line, "playlist = %s", val))
-				playlist = val;
-			else if (sscanf(line, "fm = %s", val))
-				use_fm = to_bool(val, lineno);
-			else if (sscanf(line, "game = %s", val))
-				game_id = val;
-			else if (!is_empty_line(line))
+		} else if (current_section == CONFIG) {
+			char *key, *val;
+			std::tie(key, val) = parse_keyval(line);
+			if (!key && !is_empty_line(line)) {
 				WARNING(INIFILENAME ":%d parse error", lineno);
+				continue;
+			}
+			if (!strcasecmp(key, "noantialias"))
+				no_antialias = to_bool(val, lineno);
+			else if (!strcasecmp(key, "savedir"))
+				save_dir = val;
+			else if (!strcasecmp(key, "fontfile"))
+				font_files[0] = val;
+			else if (!strcasecmp(key, "fontfile1"))
+				font_files[1] = val;
+			else if (!strcasecmp(key, "fontfile2"))
+				font_files[2] = val;
+			else if (!strcasecmp(key, "vfontfile"))
+				vwidth_font_files[0] = val;
+			else if (!strcasecmp(key, "vfontfile1"))
+				vwidth_font_files[1] = val;
+			else if (!strcasecmp(key, "vfontfile2"))
+				vwidth_font_files[2] = val;
+			else if (!strcasecmp(key, "playlist"))
+				playlist = val;
+			else if (!strcasecmp(key, "fm"))
+				use_fm = to_bool(val, lineno);
+			else if (!strcasecmp(key, "game"))
+				game_id = val;
+			else if (!strcasecmp(key, "encoding"))
+				encoding = val;
+			else if (!strcasecmp(key, "title"))
+				title = val;
+			else
+				WARNING(INIFILENAME ":%d unknown key '%s'", lineno, key);
 		} else if (!is_empty_line(line)) {
 			WARNING(INIFILENAME ":%d parse error", lineno);
 		}

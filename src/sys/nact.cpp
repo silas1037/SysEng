@@ -4,9 +4,9 @@
 	[ NACT ]
 */
 
-#include <cstring>
 #include <stdarg.h>
 #include "nact.h"
+#include "encoding.h"
 #include "ags.h"
 #include "mako.h"
 #include "msgskip.h"
@@ -20,7 +20,12 @@ extern SDL_Window* g_window;
 // 初期化
 
 NACT::NACT(int sys_ver, uint32 crc32_a, uint32 crc32_b, const Config& config)
-	: sys_ver(sys_ver), crc32_a(crc32_a), crc32_b(crc32_b), lang(get_language())
+	: sys_ver(sys_ver),
+	  crc32_a(crc32_a),
+	  crc32_b(crc32_b),
+	  config(config),
+	  encoding(Encoding::create(get_encoding_name())),
+	  strings(get_language(), encoding.get())
 {
 	platform_initialize();
 
@@ -138,6 +143,7 @@ bool NACT::mainloop()
 
 // コマンドパーサ
 
+EMSCRIPTEN_KEEPALIVE  // Prevent inlining, because this function is listed in ASYNCIFY_ADD
 void NACT::execute()
 {
 	// アドレスの確認
@@ -158,7 +164,7 @@ void NACT::execute()
 		opening();
 	}
 
-	// Skip SysEng's deprecated "new style" marker
+	// Skip SysEng's "new style" marker
 	if (scenario_page == 0 && scenario_addr == 2 &&
 		memcmp(&scenario_data[2], "REV", 3) == 0) {
 		scenario_addr = 5;
@@ -292,45 +298,56 @@ void NACT::execute()
 			message(cmd);
 			break;
 		default:
-			if(is_1byte_message(cmd) || is_2byte_message(cmd)) {
+			if (is_message(cmd)) {
 				ungetd();
 				message(0);
+			} else if (cmd >= 0x20 && cmd < 0x7f) {
+				fatal("Unknown Command: '%c' at page = %d, addr = %d", cmd, scenario_page, prev_addr);
 			} else {
-				if(cmd >= 0x20 && cmd < 0x7f) {
-					fatal("Unknown Command: '%c' at page = %d, addr = %d", cmd, scenario_page, prev_addr);
-				} else {
-					fatal("Unknown Command: %02x at page = %d, addr = %d", cmd, scenario_page, prev_addr);
-				}
+				fatal("Unknown Command: %02x at page = %d, addr = %d", cmd, scenario_page, prev_addr);
 			}
 			break;
 	}
 }
 
-void NACT::message(uint8_t terminator)
+void NACT::skip_string(uint8 terminator)
+{
+	for (uint8 c = getd(); c != terminator; c = getd()) {
+		if (c != '\\')
+			ungetd();
+		scenario_addr += encoding->mblen(scenario_data + scenario_addr);
+	}
+}
+
+void NACT::get_string(char* buf, int size, uint8 terminator)
+{
+	int start_addr = scenario_addr;
+
+	int i = 0;
+	for (uint8 c = getd(); c != terminator; c = getd()) {
+		if (c != '\\')
+			ungetd();
+		int len = encoding->mblen(scenario_data + scenario_addr);
+		if (i + len >= size)
+			fatal("String buffer overrun. page = %d, addr = %d", scenario_page, start_addr);
+		memcpy(&buf[i], &scenario_data[scenario_addr], len);
+		i += len;
+		scenario_addr += len;
+	}
+	buf[i] = '\0';
+}
+
+void NACT::message(uint8 terminator)
 {
 	char buf[200];
 	if (terminator) {  // SysEng
-		uint8* p = &scenario_data[scenario_addr];
-		char* q = buf;
-		while (*p != terminator) {
-			if (*p == '\\')
-				p++;
-			*q++ = *p++;
-		}
-		*q = '\0';
-		scenario_addr += p + 1 - &scenario_data[scenario_addr];
+		get_string(buf, sizeof(buf), terminator);
 	} else {
 		uint8* begin = &scenario_data[scenario_addr];
-		uint8* end = begin;
-		for (;;) {
-			if (is_1byte_message(*end))
-				end++;
-			else if (is_2byte_message(*end))
-				end += 2;
-			else
-				break;
-		}
-		int len = end - begin;
+		uint8* p = begin;
+		while (is_message(*p))
+			p += encoding->mblen(p);
+		int len = p - begin;
 		scenario_addr += len;
 
 		strncpy(buf, reinterpret_cast<char*>(begin), len);
